@@ -23,7 +23,8 @@ function MiComponente() {
 
     const scene = new THREE.Scene();
 
-    const renderer = new CSS3DRenderer();
+    const renderer = new THREE.WebGLRenderer();
+    renderer.xr.enabled = true;
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 

@@ -1,0 +1,9 @@
+
+.scene-container {
+  width: 50%;
+  /* Ajusta según tus necesidades */
+  height: 100vh;
+  /* O ajusta la altura según tus necesidades */
+  float: left;
+  /* Alinea a la izquierda */
+}
