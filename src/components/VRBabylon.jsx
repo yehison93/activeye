@@ -1,13 +1,18 @@
 import { useRef, useState, useEffect } from "react";
-
 import "aframe";
 import * as AFRAME from "aframe";
+import "aframe-video-controls";
 import * as aframeStereoComponent from "aframe-stereo-component";
+import Hls from "hls.js";
+import fondoTest from "../assets/fondoTest.jpg";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { useWakeLock } from "react-screen-wake-lock";
 const stereoComponent = aframeStereoComponent.stereo_component;
 const stereoCamComponent = aframeStereoComponent.stereocam_component;
+
 AFRAME.registerComponent("stereo", stereoComponent);
 AFRAME.registerComponent("stereocam", stereoCamComponent);
-import image from "../assets/prueba.png";
+
 AFRAME.registerComponent("play-on-click", {
   init: function () {
     this.onClick = this.onClick.bind(this);
@@ -53,83 +58,101 @@ AFRAME.registerComponent("hide-on-play", {
     this.el.object3D.visible = true;
   },
 });
-
+const url =
+  "https://venevision.akamaized.net/hls/live/2098814/VENEVISION/master.m3u8";
 const VRExperience = () => {
   const [stateVideo, setStateVideo] = useState(true);
-  const ref = useRef(null);
+  const videoRef = useRef(null);
+  const handle = useFullScreenHandle();
   const toggle = () => {
     setStateVideo(!stateVideo);
   };
+  const playVideo = () => {
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(videoRef.current);
+    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+      videoRef.current.src = url;
+    }
+  };
+  const { released, request, release } = useWakeLock();
 
   return (
     <div style={{ position: "relative" }}>
       <div style={{ position: "absolute", left: "0", top: "0" }}>
-        <button id="myEnterVRButton" onClick={() => toggle()}>
+        <button
+          id="myEnterVRButton"
+          onClick={() => {
+            playVideo(), toggle();
+          }}
+        >
           VR
         </button>
-        <button id="myEnterARButton">AR</button>
       </div>
 
       <a-scene
+        // background="color: #000"
         embedded={stateVideo}
-        xr-mode-ui="enterVRButton: #myEnterVRButton; enterARButton: #myEnterARButton; cardboardModeEnabled: true"
+        xr-mode-ui="enterVRButton: #myEnterVRButton; cardboardModeEnabled: true"
       >
-        <a-camera
-          position="0 0 0"
-          cursor-visible="false"
-          stereocam="eye:left;"
-        ></a-camera>
-        <a-assets>
+        <a-camera position="0 0 10" stereocam="eye:left;" look-controls>
+          <a-cursor position="0 0 0"></a-cursor>
+          {/* <a-entity
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat"
+          ></a-entity> */}
+        </a-camera>
+
+        <a-assets timeout="10000">
           <video
-            id="videoBunny"
+            controls
+            ref={videoRef}
+            id="videoFireworks"
             preload="auto"
-            src="https://cdn.aframe.io/videos/bunny.mp4"
+            autoPlay
             width="16"
             height="9"
-            autoplay
             loop="true"
             crossOrigin="anonymous"
             muted={stateVideo}
             playsinline
             webkit-playsinline
           ></video>
-          <video
-            id="videoFireworks"
-            preload="auto"
-            src="https://cdn.aframe.io/videos/bunny.mp4"
-            autoplay
-            width="16"
-            height="9"
-            loop="true"
-            crossOrigin="anonymous"
-            muted
-            playsinline
-            webkit-playsinline
-          ></video>
         </a-assets>
+        <a-sky src={fondoTest} rotation="0 300 0"></a-sky>
 
         <a-sky
-          id="test2"
+          // position="0 0 0"
           color="#000"
-          stereo="eye:left"
-          position="0 0 -20"
+          radius="2"
+          stereo="eye: left"
         ></a-sky>
-
-        <a-sky
-          id="test"
+        <a-curvedimage
           src="#videoFireworks"
-          // phi-length="90"
-          repeat="4"
-          segments-height="10"
-          segments-width="10"
-          // theta-length="90"
-          position="0 0 -20"
-          play-on-click
+          height="60"
+          radius="100"
+          theta-length="70"
           visible="false"
-          stereo="eye:right"
-          playsinline
-          webkit-playsinline
-        ></a-sky>
+          rotation="0 145 0"
+          scale="0.8 0.8 0.8"
+          play-on-click
+        ></a-curvedimage>
+
+        {/* <a-entity
+          id="controls"
+          video-controls="src:#videoFireworks; size:2;  barColor: #fff"
+        ></a-entity> */}
+        {/* <a-entity
+          position="0 0 -1.5"
+          text="align: center;
+                width: 6;
+                wrapCount: 100;
+                color: black;
+                value: Click or tap to start video"
+          hide-on-play="#videoFireworks"
+        ></a-entity> */}
       </a-scene>
     </div>
   );

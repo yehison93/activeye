@@ -35,9 +35,6 @@ importers:
       aframe-html-shader:
         specifier: ^0.2.0
         version: 0.2.0
-      aframe-immersive-video-component:
-        specifier: ^1.0.2
-        version: 1.0.2
       aframe-react:
         specifier: ^4.4.0
         version: 4.4.0
@@ -47,6 +44,9 @@ importers:
       aframe-video-billboard:
         specifier: ^1.0.2
         version: 1.0.2(aframe@1.5.0)
+      aframe-video-controls:
+        specifier: ^0.3.0
+        version: 0.3.0
       babylonjs:
         specifier: ^7.7.0
         version: 7.7.0
@@ -62,6 +62,9 @@ importers:
       babylonjs-viewer:
         specifier: ^7.7.0
         version: 7.7.0
+      hls.js:
+        specifier: ^1.5.8
+        version: 1.5.8
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -74,9 +77,15 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
+      react-full-screen:
+        specifier: ^1.1.1
+        version: 1.1.1(react@18.3.1)
       react-player:
         specifier: ^2.16.0
         version: 2.16.0(react@18.3.1)
+      react-screen-wake-lock:
+        specifier: ^3.0.2
+        version: 3.0.2(react@18.3.1)
       react-youtube:
         specifier: ^10.1.0
         version: 10.1.0(react@18.3.1)
@@ -693,9 +702,6 @@ packages:
   aframe-html-shader@0.2.0:
     resolution: {integrity: sha512-yR3t0RhzZy6wjYbpeLyYsl0QEv++Rbo1UEov9sdqOZHgWQ4Gz7asT4KH03MtAoiW2zYnAp7Hywi8v9+5Ac8e7g==}
 
-  aframe-immersive-video-component@1.0.2:
-    resolution: {integrity: sha512-RAKBfI1GE9S3pl5kvzb87e1GeWsUYrFVECfh94iMMqyfZXZeJmF3+bL4kU2oFbRkECIkZS4bdpapyvjN1cAHbg==}
-
   aframe-react@4.4.0:
     resolution: {integrity: sha512-/3C0fhCRJywLSP7JsZM/nG/bGQxbt8oEnRK3DLOUmcCtd6xulpwOf8i/Mb0Mbg/U77Y097wdSZ0mVXgEL2+u4Q==}
 
@@ -706,6 +712,9 @@ packages:
     resolution: {integrity: sha512-vY8YRBG3D8/pZrF8PteIliICD8C7CZbKH+lgO5AQ7NHnM2bMR6pHrYOBOlNTDL9HZAm5BA3cLcj20U2ppfKSCg==}
     peerDependencies:
       aframe: ^0.3.0
+
+  aframe-video-controls@0.3.0:
+    resolution: {integrity: sha512-66L+UA5mku6Qd71SfOoBbfbtUwtlz52UdJIfAeNdoPFTynKX1ZPXJtjITLX5rzfzgsXlin5Z4adGHKYAI+jFDw==}
 
   aframe@1.5.0:
     resolution: {integrity: sha512-QvxxF2jbQbSDnPouPveSm93OxfFUu5V6UmQoLbbf207BR/o4bM3trpMDCoGiYE2oQCe0d/VG56OyFmYDwYDfBg==}
@@ -1099,6 +1108,9 @@ packages:
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
+  fscreen@1.2.0:
+    resolution: {integrity: sha512-hlq4+BU0hlPmwsFjwGGzZ+OZ9N/wq9Ljg/sq3pX+2CD7hrJsX9tJgWWK/wiNTFM212CLHWhicOoqwXyZGGetJg==}
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -1193,8 +1205,8 @@ packages:
   hls.js@1.3.5:
     resolution: {integrity: sha512-uybAvKS6uDe0MnWNEPnO0krWVr+8m2R0hJ/viql8H3MVK+itq8gGQuIYoFHL3rECkIpNH98Lw8YuuWMKZxp3Ew==}
 
-  howler@2.2.4:
-    resolution: {integrity: sha512-iARIBPgcQrwtEr+tALF+rapJ8qSc+Set2GJQl7xT1MQzWaVkFebdJhR3alVlSiUf5U7nAANKuj3aWpwerocD5w==}
+  hls.js@1.5.8:
+    resolution: {integrity: sha512-hJYMPfLhWO7/7+n4f9pn6bOheCGx0WgvVz7k3ouq3Pp1bja48NN+HeCQu3XCGYzqWQF/wo7Sk6dJAyWVJD8ECA==}
 
   http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
@@ -1664,6 +1676,12 @@ packages:
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
+  react-full-screen@1.1.1:
+    resolution: {integrity: sha512-xoEgkoTiN0dw9cjYYGViiMCBYbkS97BYb4bHPhQVWXj1UnOs8PZ1rPzpX+2HMhuvQV1jA5AF9GaRbO3fA5aZtg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>= 16.8.0'
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -1677,6 +1695,12 @@ packages:
     engines: {node: '>=0.10.0'}
     peerDependencies:
       react: ^18.0.0
+
+  react-screen-wake-lock@3.0.2:
+    resolution: {integrity: sha512-f88vcfMG1AWYRSIWQ5Qx5YVboH6TSL0F4ZlFLERZp6aKiZRGVRAAJ9wedJdO5jqTMcCDZ4OXJ8PjcSkDmvGSBg==}
+    engines: {node: '>=14.16'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   react-use-measure@2.1.1:
     resolution: {integrity: sha512-nocZhN26cproIiIduswYpV5y5lQpSQS1y/4KuvUCjSKmw7ZWIS/+g3aFnX3WdBkyuGUtTLif3UTqnLLhbDoQig==}
@@ -2530,10 +2554,6 @@ snapshots:
 
   aframe-html-shader@0.2.0: {}
 
-  aframe-immersive-video-component@1.0.2:
-    dependencies:
-      howler: 2.2.4
-
   aframe-react@4.4.0: {}
 
   aframe-stereo-component@1.3.0: {}
@@ -2544,6 +2564,8 @@ snapshots:
       cuid: 1.3.8
       deep-equal: 1.1.2
       simple-statistics: 2.5.0
+
+  aframe-video-controls@0.3.0: {}
 
   aframe@1.5.0:
     dependencies:
@@ -3108,6 +3130,8 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
+  fscreen@1.2.0: {}
+
   fsevents@2.3.3:
     optional: true
 
@@ -3219,7 +3243,7 @@ snapshots:
 
   hls.js@1.3.5: {}
 
-  howler@2.2.4: {}
+  hls.js@1.5.8: {}
 
   http-cache-semantics@4.1.1: {}
 
@@ -3666,6 +3690,11 @@ snapshots:
 
   react-fast-compare@3.2.2: {}
 
+  react-full-screen@1.1.1(react@18.3.1):
+    dependencies:
+      fscreen: 1.2.0
+      react: 18.3.1
+
   react-is@16.13.1: {}
 
   react-player@2.16.0(react@18.3.1):
@@ -3682,6 +3711,10 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.3.1
       scheduler: 0.21.0
+
+  react-screen-wake-lock@3.0.2(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react-use-measure@2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
