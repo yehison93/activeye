@@ -1,12 +1,15 @@
-import { useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useRef, useEffect } from "react";
 import "aframe";
 import * as AFRAME from "aframe";
 import { Scene, Entity } from "aframe-react";
 import * as aframeStereoComponent from "aframe-stereo-component";
 import useHlsVideo from "./customHooks/useHlsVideo";
+import useOrientation from "./customHooks/useOrientation";
 import fondoTest from "../../assets/fondoTest.jpg";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { useWakeLock } from "react-screen-wake-lock";
+import "aframe-always-fullscreen-component";
+import "platform";
 
 const stereoComponent = aframeStereoComponent.stereo_component;
 const stereoCamComponent = aframeStereoComponent.stereocam_component;
@@ -14,67 +17,22 @@ const stereoCamComponent = aframeStereoComponent.stereocam_component;
 AFRAME.registerComponent("stereo", stereoComponent);
 AFRAME.registerComponent("stereocam", stereoCamComponent);
 
-AFRAME.registerComponent("play-on-click", {
-  init: function () {
-    this.onClick = this.onClick.bind(this);
-  },
-  play: function () {
-    window.addEventListener("click", this.onClick);
-  },
-  pause: function () {
-    window.removeEventListener("click", this.onClick);
-  },
-  onClick: function (evt) {
-    var videoEl = this.el.getAttribute("material").src;
-    if (!videoEl) {
-      return;
-    }
-    this.el.object3D.visible = true;
-    videoEl.play();
-  },
-});
-AFRAME.registerComponent("hide-on-play", {
-  schema: { type: "selector" },
-  init: function () {
-    this.onPlaying = this.onPlaying.bind(this);
-    this.onPause = this.onPause.bind(this);
-    this.el.object3D.visible = !this.data.playing;
-  },
-  play: function () {
-    if (this.data) {
-      this.data.addEventListener("playing", this.onPlaying);
-      this.data.addEventListener("pause", this.onPause);
-    }
-  },
-  pause: function () {
-    if (this.data) {
-      this.data.removeEventListener("playing", this.onPlaying);
-      this.data.removeEventListener("pause", this.onPause);
-    }
-  },
-  onPlaying: function (evt) {
-    this.el.object3D.visible = false;
-  },
-  onPause: function (evt) {
-    this.el.object3D.visible = true;
-  },
-});
-const url =
-  "https://venevision.akamaized.net/hls/live/2098814/VENEVISION/master.m3u8";
-const Player = () => {
+const Player = ({ url, eye }) => {
   const [stateVideo, setStateVideo] = useState(false);
   const [playVideo, videoRef] = useHlsVideo({ url });
-  const handle = useFullScreenHandle();
-  const toggle = () => {
-    setStateVideo(!stateVideo);
-  };
-
+  const [isPotrait, isLandScape] = useOrientation();
   const { released, request, release } = useWakeLock();
+
+  const toggle = () => {
+    setStateVideo(!stateVideo),
+      playVideo(),
+      released === false ? release() : request();
+  };
 
   return (
     <div
       style={{
-        // position: "relative",
+        position: "relative",
         width: "100vw",
         height: "100vh",
         padding: 0,
@@ -82,16 +40,12 @@ const Player = () => {
       }}
     >
       <div
-        style={{
-          // position: "absolute",
-          left: "0",
-          top: "0",
-        }}
+        style={{ position: "absolute", zIndex: "2", left: "50%", top: "50%" }}
       >
         <button
           id="myEnterVRButton"
           onClick={() => {
-            toggle(), playVideo(), released === false ? release() : request();
+            toggle();
           }}
         >
           VR
@@ -99,31 +53,49 @@ const Player = () => {
       </div>
       <Scene
         className="container-player"
+        style={{ with: "100%", height: "100%" }}
+        device-orientation-permission-ui="
+          enabled: true;
+          denyButtonText: Denegar;
+          allowButtonText: Permitir;
+          deviceMotionMessage: Esta es una app de VR que requiere de tu permiso para acceder a los sensores de movimiento de tu dispositivo, deberías aceptar para que tengas la mejor experiencia posible.;
+          mobileDesktopMessage: Esta es una app de VR que requiere de tu permiso para acceder a los sensores de movimiento de tu teléfono, deberías aceptar para que tengas la mejor experiencia posible.
+        "
+        renderer="
+          highRefreshRate: true;
+          foveationLevel: 1;
+          multiviewStereo: true;
+          precision: medium
+
+
+        "
+        effect={true}
         embedded={!stateVideo}
+        // always-fullscreen
         xr-mode-ui="enterVRButton: #myEnterVRButton; cardboardModeEnabled: true"
       >
         <Entity
           primitive="a-camera"
-          lock-controls
+          camera="active: true"
+          // look-controls
+          wasd-controls
           position="0 1.7 0"
-          stereocam="eye:left;"
+          stereocam={"eye: left"}
         >
           <Entity primitive="a-cursor" position="0 0 0"></Entity>
         </Entity>
 
-        <Entity primitive="a-assets" timeout="5000">
+        <Entity primitive="a-assets" timeout="1000">
           <video
-            id="videoFireworks"
+            id="videoassets"
             controls={true}
             ref={videoRef}
-            preload="auto"
+            preload={"auto"}
             autoPlay={true}
-            width="16"
-            height="9"
-            loop={true}
             crossOrigin="anonymous"
             muted={!stateVideo}
             playsInline={true}
+            on
           ></video>
         </Entity>
 
@@ -131,20 +103,25 @@ const Player = () => {
 
         <Entity
           primitive="a-sky"
-          color="#000"
-          radius="2"
-          stereo="eye: left"
+          color="#000000"
+          radius="6"
+          stereo={eye}
         ></Entity>
         <Entity
+          primitive="a-sky"
+          color="#000000"
+          radius="15"
+          opacity={"0.1"}
+        ></Entity>
+        <Entity
+          position="0 1.5 0"
           primitive="a-curvedimage"
-          src="#videoFireworks"
-          height="60"
-          radius="100"
+          src="#videoassets"
+          height="6"
+          radius="10"
           theta-length="70"
-          visible="false"
           rotation="0 145 0"
           scale="0.8 0.8 0.8"
-          play-on-click
         ></Entity>
       </Scene>
     </div>

@@ -1,4 +1,28 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+#root{
+  --colorone: #072b7c;
+  --colortwo: #6cc5cc;
+}
+
 .container-player{
-  width: 300px;
-  height: 300px;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  text-align: center;
+  
+}
+
+.container-player .a-dialog-allow-button, .container-player .a-dialog-ok-button {
+  background-color: var(--colortwo);
+  
+}
+
+.container-player .a-dialog-deny-button {
+  background-color: var(--colorone);
+}
+
+.container-player .a-dialog-allow-button, .container-player .a-dialog-deny-button, .container-player .a-dialog-ok-button{
+  color: white;
+  box-shadow: 0 0 10 black;
+  margin: 10px;
 }
