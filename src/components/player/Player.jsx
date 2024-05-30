@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import "aframe";
 import * as AFRAME from "aframe";
 import { Scene, Entity } from "aframe-react";
 import * as aframeStereoComponent from "aframe-stereo-component";
 import useHlsVideo from "./customHooks/useHlsVideo";
-import useOrientation from "./customHooks/useOrientation";
+// import useOrientation from "./customHooks/useOrientation";
 import fondoTest from "../../assets/fondoTest.jpg";
 import { useWakeLock } from "react-screen-wake-lock";
 import "aframe-always-fullscreen-component";
@@ -20,7 +20,7 @@ AFRAME.registerComponent("stereocam", stereoCamComponent);
 const Player = ({ url, eye }) => {
   const [stateVideo, setStateVideo] = useState(false);
   const [playVideo, videoRef] = useHlsVideo({ url });
-  const [isPotrait, isLandScape] = useOrientation();
+  // const [isPotrait, isLandScape] = useOrientation();
   const { released, request, release } = useWakeLock();
 
   const toggle = () => {
@@ -95,7 +95,6 @@ const Player = ({ url, eye }) => {
             crossOrigin="anonymous"
             muted={!stateVideo}
             playsInline={true}
-            on
           ></video>
         </Entity>
 
