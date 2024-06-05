@@ -3,7 +3,7 @@ import "aframe";
 import "aframe-gif-shader";
 import { Scene, Entity } from "aframe-react";
 import { stereoComponent } from "./js/functionsPlayer";
-import ruidoTv from "../../assets/ruidoTv.gif";
+import ruidoTV from "../../assets/ruidoTV.mp4";
 
 stereoComponent();
 const Player = ({
@@ -50,9 +50,17 @@ const Player = ({
       </Entity>
 
       <Entity primitive="a-assets" timeout="1000">
-        <img id="ruidoTv" src={ruidoTv} />
+        {/* <img id="ruidoTv" src={ruidoTv} /> */}
         <img id="sky" src={background} />
         <img id="logo" src={logo} />
+        <video
+          id="ruidoTV"
+          src={ruidoTV}
+          loop="true"
+          autoPlay={true}
+          muted={!stateVideo}
+          playsInline={true}
+        ></video>
         <video
           id="videoassets"
           controls={true}
@@ -84,7 +92,7 @@ const Player = ({
         material={"fog: false"}
         position="0 1.5 0"
         primitive="a-curvedimage"
-        src={error ? "#ruidoTv" : "#videoassets"}
+        src={error ? "#ruidoTV" : "#videoassets"}
         visible={stateVideo}
         height="8"
         radius="10"

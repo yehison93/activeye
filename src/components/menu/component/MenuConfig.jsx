@@ -2,9 +2,6 @@
 import { Container } from "react-bootstrap";
 import MenuVideoSelect from "./videoselect/MenuVideoSelect";
 
-
-
-
 const MenuConfig = ({ parsed, toggle, videoError }) => {
   return (
     <Container>
