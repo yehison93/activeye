@@ -11,60 +11,48 @@ importers:
       aframe:
         specifier: ^1.5.0
         version: 1.5.0
-      aframe-always-fullscreen-component:
-        specifier: ^1.0.0
-        version: 1.0.0
-      aframe-extras:
-        specifier: ^7.4.0
-        version: 7.4.0
-      aframe-html-shader:
-        specifier: ^0.2.0
-        version: 0.2.0
       aframe-react:
         specifier: ^4.4.0
         version: 4.4.0
       aframe-stereo-component:
         specifier: ^1.3.0
         version: 1.3.0
-      aframe-video-billboard:
-        specifier: ^1.0.2
-        version: 1.0.2(aframe@1.5.0)
-      aframe-video-controls:
-        specifier: ^0.3.0
-        version: 0.3.0
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
+      country-emoji:
+        specifier: ^1.5.6
+        version: 1.5.6
+      country-flag-icons:
+        specifier: ^1.5.11
+        version: 1.5.11
       hls.js:
         specifier: ^1.5.8
         version: 1.5.8
+      iptv-playlist-parser:
+        specifier: ^0.13.0
+        version: 0.13.0
       m3u8-parser:
         specifier: ^7.1.0
         version: 7.1.0
-      platform:
-        specifier: ^1.3.6
-        version: 1.3.6
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-bootstrap:
         specifier: ^2.10.2
         version: 2.10.2(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-bootstrap-icons:
+        specifier: ^1.11.4
+        version: 1.11.4(react@18.3.1)
       react-device-orientation-hook:
         specifier: ^1.0.1
         version: 1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
-      react-full-screen:
-        specifier: ^1.1.1
-        version: 1.1.1(react@18.3.1)
       react-hls-player:
         specifier: ^3.0.7
         version: 3.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-player:
-        specifier: ^2.16.0
-        version: 2.16.0(react@18.3.1)
       react-screen-wake-lock:
         specifier: ^3.0.2
         version: 3.0.2(react@18.3.1)
@@ -81,6 +69,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: ^3.5.0
         version: 3.6.0(@swc/helpers@0.5.11)(vite@5.2.11(@types/node@20.12.11))
+      aframe-gif-shader:
+        specifier: ^0.9.1
+        version: 0.9.1(aframe@1.5.0)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -526,28 +517,16 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  aframe-always-fullscreen-component@1.0.0:
-    resolution: {integrity: sha512-eZ/QCm4JA+g8KRoTyDYHG8jo9D9d+iiG3V+jzqC1kapvi3rji9u9KwCknEILoJBaZTn/YwoKkw2TQUkkh386EQ==}
-
-  aframe-extras@7.4.0:
-    resolution: {integrity: sha512-Yqn0DkDPJLyCc2OQ0QsvwJIHsrnyScQGarb59uO7aT3U2MmOttjEWuhzzB9yyovcpf4h5gMyE3hDTH78hI4ucA==}
-
-  aframe-html-shader@0.2.0:
-    resolution: {integrity: sha512-yR3t0RhzZy6wjYbpeLyYsl0QEv++Rbo1UEov9sdqOZHgWQ4Gz7asT4KH03MtAoiW2zYnAp7Hywi8v9+5Ac8e7g==}
+  aframe-gif-shader@0.9.1:
+    resolution: {integrity: sha512-CZdhj8vEMppB2Y2oXdV/QAuX2iGSN6SzEytx94m9fmFjflJipPPYBtgBsLs1NFc9THloaT8djJn5a4qkGRBKUA==}
+    peerDependencies:
+      aframe: ^0.9.0
 
   aframe-react@4.4.0:
     resolution: {integrity: sha512-/3C0fhCRJywLSP7JsZM/nG/bGQxbt8oEnRK3DLOUmcCtd6xulpwOf8i/Mb0Mbg/U77Y097wdSZ0mVXgEL2+u4Q==}
 
   aframe-stereo-component@1.3.0:
     resolution: {integrity: sha512-zi1zmMl74gPVvlwXd4rwScsYxahn6uzYDn0/bLW7TR3cFR40NMdUuM1JeeQDTZGr6qS+Acqo9cKzBk8sFbdv4A==}
-
-  aframe-video-billboard@1.0.2:
-    resolution: {integrity: sha512-vY8YRBG3D8/pZrF8PteIliICD8C7CZbKH+lgO5AQ7NHnM2bMR6pHrYOBOlNTDL9HZAm5BA3cLcj20U2ppfKSCg==}
-    peerDependencies:
-      aframe: ^0.3.0
-
-  aframe-video-controls@0.3.0:
-    resolution: {integrity: sha512-66L+UA5mku6Qd71SfOoBbfbtUwtlz52UdJIfAeNdoPFTynKX1ZPXJtjITLX5rzfzgsXlin5Z4adGHKYAI+jFDw==}
 
   aframe@1.5.0:
     resolution: {integrity: sha512-QvxxF2jbQbSDnPouPveSm93OxfFUu5V6UmQoLbbf207BR/o4bM3trpMDCoGiYE2oQCe0d/VG56OyFmYDwYDfBg==}
@@ -625,9 +604,6 @@ packages:
   brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
 
-  browser-fingerprint@0.0.1:
-    resolution: {integrity: sha512-b8SXP7yOlzLUJXF8WUvIjmbJzkJC0X6OHe7J9a/SHqEBC7a9Eglag6AANSTJz82h5U582kuxm/5TPudnD68EPA==}
-
   buffer-equal@0.0.1:
     resolution: {integrity: sha512-RgSV6InVQ9ODPdLWJ5UAqBqJBOg370Nz6ZQtRzpt6nUjc8v0St97uJ4PYC6NztqIScrAXafKM3mZPMygSe1ggA==}
     engines: {node: '>=0.4.0'}
@@ -670,9 +646,11 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
-  core-js@1.2.7:
-    resolution: {integrity: sha512-ZiPp9pZlgxpWRu0M+YWbm6+aQ84XEfH1JRXvfOc/fILWI0VKhLC2LX13X1NYq4fULzLMq7Hfh43CSo2/aIaUPA==}
-    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+  country-emoji@1.5.6:
+    resolution: {integrity: sha512-pSB8OOROfimFc2bcN+H41DuzXYIod/JQ6SgF4pYXkRCm9f8uF1JAJ0vXPhenug6xkpt3Gv33mdypMXB49CJWRA==}
+
+  country-flag-icons@1.5.11:
+    resolution: {integrity: sha512-B+mvFywunkRJs270k7kCBjhogvIA0uNn6GAXv6m2cPn3rrwqZzZVr2gBWcz+Cz7OGVWlcbERlYRIX0S6OGr8Bw==}
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -680,10 +658,6 @@ packages:
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
-
-  cuid@1.3.8:
-    resolution: {integrity: sha512-MoL67ZZuBetDMxzrZtO+Iq1ATajFACQCP52QRinBgd3yTjYdv54mJO8ibUrh06fojKCoX5P2i7KkEatm4VTIOQ==}
-    deprecated: Cuid and other k-sortable and non-cryptographic ids (Ulid, ObjectId, KSUID, all UUIDs) are all insecure. Use @paralleldrive/cuid2 instead.
 
   custom-event-polyfill@1.0.7:
     resolution: {integrity: sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w==}
@@ -726,16 +700,8 @@ packages:
     resolution: {integrity: sha512-2QhG3Kxulu4XIF3WL5C5x0sc/S17JLgm1SfvDfIRsR/5m7ZGmcejII7fZ2RyWhN0UWIJm0TNM/eKow6LAn3evQ==}
     engines: {node: '>=0.10.0'}
 
-  deep-equal@1.1.2:
-    resolution: {integrity: sha512-5tdhKF6DbU7iIzrIOa1AOUt39ZRm13cmL1cGEh//aqR8x9+tNfbywRf0n5FD/18OKMdo7DNEtrX2t22ZAkI+eg==}
-    engines: {node: '>= 0.4'}
-
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
-
-  deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
-    engines: {node: '>=0.10.0'}
 
   defer-to-connect@1.1.3:
     resolution: {integrity: sha512-0ISdNousHvZT2EiFlZeZAHBUvSxmKswVCEf8hW7KWgG4a8MVEu/3Vb6uWYozkjylyCxe0JBIiRB1jV45S70WVQ==}
@@ -902,9 +868,6 @@ packages:
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
-  fscreen@1.2.0:
-    resolution: {integrity: sha512-hlq4+BU0hlPmwsFjwGGzZ+OZ9N/wq9Ljg/sq3pX+2CD7hrJsX9tJgWWK/wiNTFM212CLHWhicOoqwXyZGGetJg==}
-
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -1030,9 +993,8 @@ packages:
   invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
 
-  is-arguments@1.1.1:
-    resolution: {integrity: sha512-8Q7EARjzEnKpt/PCD7e1cgUS0a6X8u5tdSiMqXhojOdoV9TsMsiO+9VLC5vAmO8N7/GmXn7yjR8qnA6bVAEzfA==}
-    engines: {node: '>= 0.4'}
+  iptv-playlist-parser@0.13.0:
+    resolution: {integrity: sha512-As51+8A7AcFzV9Y8mt30TIbRkBn6l0TGuL9lIG2bPcqb+YYRVzfjsqqugz3eWbEmziEKEsLzexnqPSO7ZzQc0A==}
 
   is-array-buffer@3.0.4:
     resolution: {integrity: sha512-wcjaerHw0ydZwfhiKbXJWLDY8A7yV7KhjQOpb83hGgGfId/aQa4TOvwyzn2PuswW2gPCYEL/nEAiSVpdOj1lXw==}
@@ -1067,6 +1029,10 @@ packages:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
     engines: {node: '>= 0.4'}
 
+  is-extglob@1.0.0:
+    resolution: {integrity: sha512-7Q+VbVafe6x2T+Tu6NcOf6sRklazEPmBoB3IWk3WdGZM2iGUwU/Oe3Wtq5lSEkDTTlpp8yx+5t4pzO/i9Ty1ww==}
+    engines: {node: '>=0.10.0'}
+
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
     engines: {node: '>=0.10.0'}
@@ -1081,8 +1047,16 @@ packages:
     resolution: {integrity: sha512-jsEjy9l3yiXEQ+PsXdmBwEPcOxaXWLspKdplFUVI9vq1iZgIekeC0L167qeu86czQaxed3q/Uzuw0swL0irL8A==}
     engines: {node: '>= 0.4'}
 
+  is-glob@2.0.1:
+    resolution: {integrity: sha512-a1dBeB19NXsf/E0+FHqkagizel/LQw2DjSQpvQrj3zT+jYPpaUCryPnrQajXKFLCMuf4I6FhRpaGtw4lPrG6Eg==}
+    engines: {node: '>=0.10.0'}
+
   is-glob@4.0.3:
     resolution: {integrity: sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==}
+    engines: {node: '>=0.10.0'}
+
+  is-invalid-path@0.1.0:
+    resolution: {integrity: sha512-aZMG0T3F34mTg4eTdszcGXx54oiZ4NtHSft3hWNJMGJXUUqdIj3cOZuHcU0nCWWcY3jd7yRe/3AEm3vSNTpBGQ==}
     engines: {node: '>=0.10.0'}
 
   is-map@2.0.3:
@@ -1128,6 +1102,10 @@ packages:
   is-typed-array@1.1.13:
     resolution: {integrity: sha512-uZ25/bUAlUY5fR4OKT4rZQEBrzQWYV9ZJYGGsUmEJ6thodVJ1HX64ePQ6Z0qPWP+m+Uq6e9UugrE38jeYsDSMw==}
     engines: {node: '>= 0.4'}
+
+  is-valid-path@0.1.1:
+    resolution: {integrity: sha512-+kwPrVDu9Ms03L90Qaml+79+6DZHqHyRoANI6IsZJ/g8frhnfchDOBCa0RbQ6/kdHt5CS5OeIEyrYznNuVN+8A==}
+    engines: {node: '>=0.10.0'}
 
   is-weakmap@2.0.2:
     resolution: {integrity: sha512-K5pXYOm9wqY1RgjpL3YTkF39tni1XajUIkawTLUo9EZEVUFga5gSQJF8nNS7ZwJQ02y+1YCNYcMh+HIf1ZqE+w==}
@@ -1188,9 +1166,6 @@ packages:
   load-bmfont@1.4.1:
     resolution: {integrity: sha512-8UyQoYmdRDy81Brz6aLAUhfZLwr5zV0L3taTQ4hju7m6biuwiWiJXjPhBJxbUQJA8PrkvJ/7Enqmwk2sM14soA==}
 
-  load-script@1.0.0:
-    resolution: {integrity: sha512-kPEjMFtZvwL9TaZo0uZ2ml+Ye9HUMmPwbYRJ324qF9tqMejwykJ5ggTyvzmrbBeapCAbk98BSbTeovHEEP1uCA==}
-
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
@@ -1215,9 +1190,6 @@ packages:
 
   map-limit@0.0.1:
     resolution: {integrity: sha512-pJpcfLPnIF/Sk3taPW21G/RQsEEirGaFpCW3oXRwH9dnFHPHNGjNyvh++rdmC2fNqEaTw2MhYJraoJWAHx8kEg==}
-
-  memoize-one@5.2.1:
-    resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
 
   mime@1.6.0:
     resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
@@ -1255,12 +1227,6 @@ packages:
     resolution: {integrity: sha512-lL4AjabAAFi313tjrtmgm/bxCRzp4l3vCshojfV/ij3IPdtnRqv6Chcw+SqJUhbe7g3o3BecaqCJYUNLswGBhQ==}
     hasBin: true
 
-  nipplejs@0.10.2:
-    resolution: {integrity: sha512-XGxFY8C2DOtobf1fK+MXINTzkkXJLjZDDpfQhOUZf4TSytbc9s4bmA0lB9eKKM8iDivdr9NQkO7DpIQfsST+9g==}
-
-  node-fingerprint@0.0.2:
-    resolution: {integrity: sha512-vPFfTD5EBJieQ4SI3v61fWxlV1kav3m9Dbejd6CjWhOJn8s+XMxpOOosCNAyIrUQ/jJOlPndfrZ0lSw4+RgwcA==}
-
   normalize-url@4.5.1:
     resolution: {integrity: sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==}
     engines: {node: '>=8'}
@@ -1274,10 +1240,6 @@ packages:
 
   object-inspect@1.13.1:
     resolution: {integrity: sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ==}
-
-  object-is@1.1.6:
-    resolution: {integrity: sha512-F8cZ+KfGlSGi09lJT7/Nd6KJZ9ygtvYC0/UYYLI9nmQKLMnydpB9yvbv9K1uSkEu7FU9vYPmVwLg328tX+ot3Q==}
-    engines: {node: '>= 0.4'}
 
   object-keys@1.1.1:
     resolution: {integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==}
@@ -1363,9 +1325,6 @@ packages:
   picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
-  platform@1.3.6:
-    resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
-
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
@@ -1413,6 +1372,11 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  react-bootstrap-icons@1.11.4:
+    resolution: {integrity: sha512-lnkOpNEZ/Zr7mNxvjA9efuarCPSgtOuGA55XiRj7ASJnBjb1wEAdtJOd2Aiv9t07r7FLI1IgyZPg9P6jqWD/IA==}
+    peerDependencies:
+      react: '>=16.8.6'
+
   react-bootstrap@2.10.2:
     resolution: {integrity: sha512-UvB7mRqQjivdZNxJNEA2yOQRB7L9N43nBnKc33K47+cH90/ujmnMwatTCwQLu83gLhrzAl8fsa6Lqig/KLghaA==}
     peerDependencies:
@@ -1434,15 +1398,6 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
-  react-fast-compare@3.2.2:
-    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
-
-  react-full-screen@1.1.1:
-    resolution: {integrity: sha512-xoEgkoTiN0dw9cjYYGViiMCBYbkS97BYb4bHPhQVWXj1UnOs8PZ1rPzpX+2HMhuvQV1jA5AF9GaRbO3fA5aZtg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>= 16.8.0'
-
   react-hls-player@3.0.7:
     resolution: {integrity: sha512-i5QWNyLmaUhV/mgnpljRJT0CBfJnylClV/bne8aiXO3ZqU0+D3U/jtTDwdXM4i5qHhyFy9lemyZ179IgadKd0Q==}
     peerDependencies:
@@ -1454,11 +1409,6 @@ packages:
 
   react-lifecycles-compat@3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
-
-  react-player@2.16.0:
-    resolution: {integrity: sha512-mAIPHfioD7yxO0GNYVFD1303QFtI3lyyQZLY229UEAp/a10cSW+hPcakg0Keq8uWJxT2OiT/4Gt+Lc9bD6bJmQ==}
-    peerDependencies:
-      react: '>=16.6.0'
 
   react-screen-wake-lock@3.0.2:
     resolution: {integrity: sha512-f88vcfMG1AWYRSIWQ5Qx5YVboH6TSL0F4ZlFLERZp6aKiZRGVRAAJ9wedJdO5jqTMcCDZ4OXJ8PjcSkDmvGSBg==}
@@ -1552,9 +1502,6 @@ packages:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
     engines: {node: '>= 0.4'}
 
-  simple-statistics@2.5.0:
-    resolution: {integrity: sha512-cv2oGTuH1gKBt/JpHfPLz49uw2COO16okcKAzgf68yanj3E7befmxHc8cXvHNbvXCBk2mDUvNaJdp0p2ktnZ9g==}
-
   source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
@@ -1602,14 +1549,6 @@ packages:
   three-bmfont-text@https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/eed4878795be9b3e38cf6aec6b903f56acd1f695:
     resolution: {tarball: https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/eed4878795be9b3e38cf6aec6b903f56acd1f695}
     version: 3.0.0
-
-  three-pathfinding@1.2.0:
-    resolution: {integrity: sha512-TlIfy+mLOdP7OhQG4Mn1dNONYbhu2Xe+AD7jL8SbdKdAHxH/TF68svpk2c8UrSfR/3YWQ87Tq/lp5HQO/QuaMw==}
-    peerDependencies:
-      three: 0.x.x
-
-  three@0.159.0:
-    resolution: {integrity: sha512-eCmhlLGbBgucuo4VEA9IO3Qpc7dh8Bd4VKzr7WfW4+8hMcIfoAVi1ev0pJYN9PTTsCslbcKgBwr2wNZ1EvLInA==}
 
   to-readable-stream@1.0.0:
     resolution: {integrity: sha512-Iq25XBt6zD5npPhlLVXGFN3/gyR2/qODcKNNyTMd4vbm39HUaOiAM4PMq0eMVC/Tkxz+Zjdsc55g9yyz+Yq00Q==}
@@ -1667,6 +1606,10 @@ packages:
 
   url-toolkit@2.2.5:
     resolution: {integrity: sha512-mtN6xk+Nac+oyJ/PrI7tzfmomRVNFIWKUbG8jdYFt52hxbiReFAXIjYskvu64/dvuW71IcB7lV8l0HvZMac6Jg==}
+
+  validator@13.12.0:
+    resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
+    engines: {node: '>= 0.10'}
 
   vite@5.2.11:
     resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
@@ -2074,30 +2017,13 @@ snapshots:
 
   acorn@8.11.3: {}
 
-  aframe-always-fullscreen-component@1.0.0:
+  aframe-gif-shader@0.9.1(aframe@1.5.0):
     dependencies:
-      platform: 1.3.6
-
-  aframe-extras@7.4.0:
-    dependencies:
-      nipplejs: 0.10.2
-      three: 0.159.0
-      three-pathfinding: 1.2.0(three@0.159.0)
-
-  aframe-html-shader@0.2.0: {}
+      aframe: 1.5.0
 
   aframe-react@4.4.0: {}
 
   aframe-stereo-component@1.3.0: {}
-
-  aframe-video-billboard@1.0.2(aframe@1.5.0):
-    dependencies:
-      aframe: 1.5.0
-      cuid: 1.3.8
-      deep-equal: 1.1.2
-      simple-statistics: 2.5.0
-
-  aframe-video-controls@0.3.0: {}
 
   aframe@1.5.0:
     dependencies:
@@ -2218,8 +2144,6 @@ snapshots:
       balanced-match: 1.0.2
       concat-map: 0.0.1
 
-  browser-fingerprint@0.0.1: {}
-
   buffer-equal@0.0.1: {}
 
   buffer@6.0.3:
@@ -2272,7 +2196,9 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  core-js@1.2.7: {}
+  country-emoji@1.5.6: {}
+
+  country-flag-icons@1.5.11: {}
 
   cross-spawn@7.0.3:
     dependencies:
@@ -2281,12 +2207,6 @@ snapshots:
       which: 2.0.2
 
   csstype@3.1.3: {}
-
-  cuid@1.3.8:
-    dependencies:
-      browser-fingerprint: 0.0.1
-      core-js: 1.2.7
-      node-fingerprint: 0.0.2
 
   custom-event-polyfill@1.0.7: {}
 
@@ -2322,18 +2242,7 @@ snapshots:
     dependencies:
       is-obj: 1.0.1
 
-  deep-equal@1.1.2:
-    dependencies:
-      is-arguments: 1.1.1
-      is-date-object: 1.0.5
-      is-regex: 1.1.4
-      object-is: 1.1.6
-      object-keys: 1.1.1
-      regexp.prototype.flags: 1.5.2
-
   deep-is@0.1.4: {}
-
-  deepmerge@4.3.1: {}
 
   defer-to-connect@1.1.3: {}
 
@@ -2627,8 +2536,6 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
-  fscreen@1.2.0: {}
-
   fsevents@2.3.3:
     optional: true
 
@@ -2773,10 +2680,10 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  is-arguments@1.1.1:
+  iptv-playlist-parser@0.13.0:
     dependencies:
-      call-bind: 1.0.7
-      has-tostringtag: 1.0.2
+      is-valid-path: 0.1.1
+      validator: 13.12.0
 
   is-array-buffer@3.0.4:
     dependencies:
@@ -2812,6 +2719,8 @@ snapshots:
     dependencies:
       has-tostringtag: 1.0.2
 
+  is-extglob@1.0.0: {}
+
   is-extglob@2.1.1: {}
 
   is-finalizationregistry@1.0.2:
@@ -2824,9 +2733,17 @@ snapshots:
     dependencies:
       has-tostringtag: 1.0.2
 
+  is-glob@2.0.1:
+    dependencies:
+      is-extglob: 1.0.0
+
   is-glob@4.0.3:
     dependencies:
       is-extglob: 2.1.1
+
+  is-invalid-path@0.1.0:
+    dependencies:
+      is-glob: 2.0.1
 
   is-map@2.0.3: {}
 
@@ -2862,6 +2779,10 @@ snapshots:
   is-typed-array@1.1.13:
     dependencies:
       which-typed-array: 1.1.15
+
+  is-valid-path@0.1.1:
+    dependencies:
+      is-invalid-path: 0.1.0
 
   is-weakmap@2.0.2: {}
 
@@ -2937,8 +2858,6 @@ snapshots:
       xhr: 2.6.0
       xtend: 4.0.2
 
-  load-script@1.0.0: {}
-
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
@@ -2962,8 +2881,6 @@ snapshots:
   map-limit@0.0.1:
     dependencies:
       once: 1.3.3
-
-  memoize-one@5.2.1: {}
 
   mime@1.6.0: {}
 
@@ -2994,10 +2911,6 @@ snapshots:
       minimist: 1.2.8
       new-array: 1.0.0
 
-  nipplejs@0.10.2: {}
-
-  node-fingerprint@0.0.2: {}
-
   normalize-url@4.5.1: {}
 
   nosleep.js@0.7.0: {}
@@ -3005,11 +2918,6 @@ snapshots:
   object-assign@4.1.1: {}
 
   object-inspect@1.13.1: {}
-
-  object-is@1.1.6:
-    dependencies:
-      call-bind: 1.0.7
-      define-properties: 1.2.1
 
   object-keys@1.1.1: {}
 
@@ -3099,8 +3007,6 @@ snapshots:
 
   picocolors@1.0.0: {}
 
-  platform@1.3.6: {}
-
   possible-typed-array-names@1.0.0: {}
 
   postcss@8.4.38:
@@ -3146,6 +3052,11 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  react-bootstrap-icons@1.11.4(react@18.3.1):
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.3.1
+
   react-bootstrap@2.10.2(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.24.5
@@ -3176,13 +3087,6 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
-  react-fast-compare@3.2.2: {}
-
-  react-full-screen@1.1.1(react@18.3.1):
-    dependencies:
-      fscreen: 1.2.0
-      react: 18.3.1
-
   react-hls-player@3.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       hls.js: 0.14.17
@@ -3192,15 +3096,6 @@ snapshots:
   react-is@16.13.1: {}
 
   react-lifecycles-compat@3.0.4: {}
-
-  react-player@2.16.0(react@18.3.1):
-    dependencies:
-      deepmerge: 4.3.1
-      load-script: 1.0.0
-      memoize-one: 5.2.1
-      prop-types: 15.8.1
-      react: 18.3.1
-      react-fast-compare: 3.2.2
 
   react-screen-wake-lock@3.0.2(react@18.3.1):
     dependencies:
@@ -3332,8 +3227,6 @@ snapshots:
       get-intrinsic: 1.2.4
       object-inspect: 1.13.1
 
-  simple-statistics@2.5.0: {}
-
   source-map-js@1.2.0: {}
 
   string.prototype.matchall@4.0.11:
@@ -3394,12 +3287,6 @@ snapshots:
       layout-bmfont-text: 1.3.4
       nice-color-palettes: 3.0.0
       quad-indices: 2.0.1
-
-  three-pathfinding@1.2.0(three@0.159.0):
-    dependencies:
-      three: 0.159.0
-
-  three@0.159.0: {}
 
   to-readable-stream@1.0.0: {}
 
@@ -3473,6 +3360,8 @@ snapshots:
       prepend-http: 2.0.0
 
   url-toolkit@2.2.5: {}
+
+  validator@13.12.0: {}
 
   vite@5.2.11(@types/node@20.12.11):
     dependencies:

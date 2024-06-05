@@ -2,15 +2,38 @@
 
 #root{
   --colorone: #072b7c;
+  --colorone-degrade: #6cc6ccb0;
   --colortwo: #6cc5cc;
+  --colortwo-degrade: #072a7cb0;
+}
+
+.player-main{
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.player-menu{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 2;
+}
+.player-menu::-webkit-scrollbar{
+  display: none;
 }
 
 .container-player{
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
+  width: 100%;
+  height: 100%;
   text-align: center;
-  
 }
 
 .container-player .a-dialog-allow-button, .container-player .a-dialog-ok-button {
