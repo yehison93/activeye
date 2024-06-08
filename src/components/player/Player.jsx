@@ -2,19 +2,86 @@
 import "aframe";
 import "aframe-gif-shader";
 import { Scene, Entity } from "aframe-react";
-import { stereoComponent } from "./js/functionsPlayer";
+import {
+  stereoComponent,
+  getHeight,
+  getRotation,
+  getThetaLength,
+} from "./js/functionsPlayer";
 import ruidoTV from "../../assets/ruidoTV.mp4";
+import { useCallback } from "react";
 
 stereoComponent();
-const Player = ({
-  logo,
-  eye,
-  background,
-  stateVideo,
-  fog,
-  videoRef,
-  error,
-}) => {
+
+const Player = ({ settings, videoRef, error }) => {
+  const Camera = useCallback(() => {
+    return (
+      <>
+        <Entity
+          primitive="a-camera"
+          camera="active: true"
+          wasd-controls
+          position="0 1.7 0"
+          stereocam={settings.eye ? "eye: left" : "eye: right"}
+        >
+          <Entity primitive="a-cursor" position="0 0 0"></Entity>
+        </Entity>
+      </>
+    );
+  }, [settings.eye]);
+
+  const BackGround = useCallback(() => {
+    return (
+      <>
+        <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
+      </>
+    );
+  }, [settings.backGround]);
+
+  const Tv = useCallback(() => {
+    return (
+      <>
+        <Entity
+          material="fog: false"
+          position="0 1.5 0"
+          primitive="a-curvedimage"
+          src={"#logo"}
+          visible={!settings.stateVideo}
+          height="4"
+          radius="10"
+          theta-length="70"
+          rotation="0 145 0"
+          scale="0.8 0.8 0.8"
+        />
+        <Entity
+          material={"fog: false"}
+          position="0 1.5 0"
+          primitive="a-curvedimage"
+          src={"#videoassets"}
+          visible={settings.stateVideo}
+          height={getHeight(settings.sizeTV)}
+          radius="20"
+          theta-length={getThetaLength(settings.sizeTV)}
+          rotation={getRotation(settings.sizeTV)}
+          scale="0.8 0.8 0.8"
+        />
+      </>
+    );
+  }, [error, settings.sizeTV, settings.stateVideo]);
+
+  const Parche = useCallback(() => {
+    return (
+      <>
+        <Entity
+          primitive="a-sky"
+          color="black"
+          radius="8"
+          stereo={settings.eye ? "eye: right" : "eye: left"}
+        />
+      </>
+    );
+  }, [settings.eye]);
+
   return (
     <Scene
       className="container-player"
@@ -24,7 +91,6 @@ const Player = ({
           denyButtonText: Denegar;
           allowButtonText: Permitir;
           deviceMotionMessage: Esta es una app de VR que requiere de tu permiso para acceder a los sensores de movimiento de tu dispositivo, deberías aceptar para que tengas la mejor experiencia posible.;
-          mobileDesktopMessage: Esta es una app de VR que requiere de tu permiso para acceder a los sensores de movimiento de tu teléfono, deberías aceptar para que tengas la mejor experiencia posible.;
         "
       renderer="
           highRefreshRate: true;
@@ -32,74 +98,32 @@ const Player = ({
           multiviewStereo: true;
           precision: medium;
         "
-      fog={`type: exponential; color: ${
-        stateVideo ? fog.color : "white"
-      }; density: ${fog.density}`}
+      fog={`type: exponential; color: ${settings.fog.color}; density: ${settings.fog.density}`}
       effect={true}
-      embedded={!stateVideo}
+      embedded={!settings.stateVideo}
       xr-mode-ui={`enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
-      <Entity
-        primitive="a-camera"
-        camera="active: true"
-        wasd-controls
-        position="0 1.7 0"
-        stereocam={"eye: left"}
-      >
-        <Entity primitive="a-cursor" position="0 0 0"></Entity>
-      </Entity>
-
-      <Entity primitive="a-assets" timeout="1000">
-        {/* <img id="ruidoTv" src={ruidoTv} /> */}
-        <img id="sky" src={background} />
-        <img id="logo" src={logo} />
-        <video
-          id="ruidoTV"
-          src={ruidoTV}
-          loop="true"
-          autoPlay={true}
-          muted={!stateVideo}
-          playsInline={true}
-        ></video>
+      <Entity primitive="a-assets">
+        <img id="sky" src={settings.backGround} />
+        <img id="logo" src={settings.logo} />
         <video
           id="videoassets"
           controls={true}
+          preload="metadata"
           ref={videoRef}
-          preload={"auto"}
           autoPlay={true}
-          crossOrigin="anonymous"
-          muted={!stateVideo}
+          crossOrigin={"anonymous"}
+          muted={!settings.stateVideo}
+          width={16}
+          height={9}
           playsInline={true}
+          webkit-playsinline={true}
         ></video>
       </Entity>
-
-      <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
-
-      <Entity primitive="a-sky" color="black" radius="8" stereo={eye} />
-      <Entity
-        material="fog: false"
-        position="0 1.5 0"
-        primitive="a-curvedimage"
-        src={"#logo"}
-        visible={!stateVideo}
-        height="8"
-        radius="10"
-        theta-length="70"
-        rotation="0 145 0"
-        scale="0.8 0.8 0.8"
-      />
-      <Entity
-        material={"fog: false"}
-        position="0 1.5 0"
-        primitive="a-curvedimage"
-        src={error ? "#ruidoTV" : "#videoassets"}
-        visible={stateVideo}
-        height="8"
-        radius="10"
-        theta-length="70"
-        rotation="0 145 0"
-        scale="0.8 0.8 0.8"
-      />
+      <Camera />
+      <BackGround />
+      <Parche />
+      <Tv />
     </Scene>
   );
 };

@@ -1,15 +1,25 @@
 /* eslint-disable react/prop-types */
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import MenuVideoSelect from "./videoselect/MenuVideoSelect";
+import MenuConfigSelect from "./configselect/MenuConfigSelect";
+import { useState } from "react";
 
-const MenuConfig = ({ parsed, toggle, videoError }) => {
+const MenuConfig = ({ videoError, settings, setSettings, attachVideo }) => {
+  const [viewConfig, setViewConfig] = useState(false);
   return (
     <Container>
-      <MenuVideoSelect
-        parsed={parsed}
-        toggle={toggle}
-        videoError={videoError}
-      />
+      <Row>
+        <MenuVideoSelect
+          videoError={videoError}
+          setViewConfig={setViewConfig}
+          settings={settings}
+          attachVideo={attachVideo}
+          setSettings={setSettings}
+        />
+      </Row>
+      <Row hidden={!viewConfig}>
+        <MenuConfigSelect settings={settings} setSettings={setSettings} />
+      </Row>
     </Container>
   );
 };

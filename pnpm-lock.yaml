@@ -56,6 +56,9 @@ importers:
       react-screen-wake-lock:
         specifier: ^3.0.2
         version: 3.0.2(react@18.3.1)
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
     devDependencies:
       '@types/react':
         specifier: ^18.2.66
@@ -1606,6 +1609,10 @@ packages:
 
   url-toolkit@2.2.5:
     resolution: {integrity: sha512-mtN6xk+Nac+oyJ/PrI7tzfmomRVNFIWKUbG8jdYFt52hxbiReFAXIjYskvu64/dvuW71IcB7lV8l0HvZMac6Jg==}
+
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
 
   validator@13.12.0:
     resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
@@ -3360,6 +3367,8 @@ snapshots:
       prepend-http: 2.0.0
 
   url-toolkit@2.2.5: {}
+
+  uuid@9.0.1: {}
 
   validator@13.12.0: {}
 

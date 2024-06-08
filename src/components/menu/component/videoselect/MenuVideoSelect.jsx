@@ -7,26 +7,28 @@ import {
   FloatingLabel,
   Form,
   Row,
+  Stack,
 } from "react-bootstrap";
 import VideoCards from "./VideoCards";
 import useM3uToJson from "../../customHooks/UseM3uToJson";
 import { m3uFile } from "../../../../assets/kidsList";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useForm from "../../customHooks/UseForm";
+import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { v4 as uuidv4 } from "uuid";
 
-const MenuVideoSelect = ({ toggle, videoError }) => {
+const MenuVideoSelect = ({
+  videoError,
+  setViewConfig,
+  settings,
+  attachVideo,
+  setSettings,
+}) => {
   const [parsed] = useM3uToJson({ m3uFile });
   const [channels, onChange] = useForm(parsed);
-  const [selectVideo, setSelectVideo] = useState(false);
   const [nameChannel, setNameChannel] = useState("");
-
-  useEffect(() => {
-    if (!videoError) {
-      setSelectVideo(true);
-    } else {
-      setSelectVideo(false);
-    }
-  }, [videoError]);
+  const [viewVideoSelect, setViewVideoSelect] = useState(false);
+  const [viewButtonVideo, setViewButtonVideo] = useState(false);
 
   return (
     <Container className="justify-content-center">
@@ -35,10 +37,46 @@ const MenuVideoSelect = ({ toggle, videoError }) => {
           className="bg-transparent border-0 text-light p-0 mx-auto my-3"
           style={{ width: "100%", boxShadow: "0 0 10px #000" }}
         >
-          <Card.Header style={{ backgroundColor: "var(--colorone-degrade)" }}>
-            <h2 className="text-center">Selecciona un canal</h2>
+          <Card.Header
+            style={{
+              backgroundColor: "var(--colorone-degrade)",
+              textAlign: "center",
+            }}
+          >
+            <Stack
+              direction="horizontal"
+              gap={3}
+              style={{ justifyContent: "center" }}
+            >
+              <h2 className="text-center">Selecciona un canal</h2>
+              <Button
+                variant="outline-link"
+                style={{ border: "none" }}
+                onClick={() => setViewVideoSelect(!viewVideoSelect)}
+              >
+                {viewVideoSelect ? <Eye /> : <EyeSlash />}
+              </Button>
+            </Stack>
+            <Button
+              style={{
+                backgroundColor: "var(--colorone)",
+                color: "white",
+                fontSize: "1rem",
+                animation: !videoError ? "pulse 1s infinite" : "none",
+              }}
+              disabled={videoError}
+              hidden={!viewButtonVideo || videoError}
+              onClick={() => {
+                setViewConfig(true);
+                setViewVideoSelect(true);
+                setViewButtonVideo(false);
+              }}
+            >
+              {!videoError ? `${nameChannel} listo` : "ningún canal listo"}
+            </Button>
           </Card.Header>
           <Card.Footer
+            hidden={viewVideoSelect}
             className="text-center"
             style={{ backgroundColor: "var(--colortwo-degrade)" }}
           >
@@ -53,30 +91,23 @@ const MenuVideoSelect = ({ toggle, videoError }) => {
                 onChange={(e) => onChange(e.target.value)}
               />
             </FloatingLabel>
-
-            <Button
-              style={{
-                backgroundColor: "var(--colortwo)",
-                fontSize: "1.5em",
-              }}
-              hidden={!selectVideo}
-            >
-              {`${nameChannel} esta listo`}
-            </Button>
           </Card.Footer>
         </Card>
       </Row>
 
-      <Row xs={2} sm={3} md={"auto"} className="p-0 m-0">
-        {channels.map((item, index) => {
+      <Row hidden={viewVideoSelect} xs={2} sm={3} md={"auto"}>
+        {channels.map((item) => {
           return (
             <>
-              <Col className="py-2">
+              <Col className="py-1">
                 <VideoCards
-                  key={`${index}${item.name.split(" ").join("")}`}
+                  key={uuidv4()}
                   items={item}
-                  toggle={toggle}
                   setNameChannel={setNameChannel}
+                  attachVideo={attachVideo}
+                  settings={settings}
+                  setSettings={setSettings}
+                  setViewButtonVideo={setViewButtonVideo}
                 />
               </Col>
             </>

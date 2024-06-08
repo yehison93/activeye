@@ -50,3 +50,25 @@
   box-shadow: 0 0 10 black;
   margin: 10px;
 }
+
+.form-select, .card{
+  box-shadow: 0 0 10px black;
+}
+
+.form-label{
+  font-size: 1.3em;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

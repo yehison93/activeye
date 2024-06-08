@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import Hls from "hls.js";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
+import ruidoTV from "../../../assets/ruidoTV.mp4";
 
 const configHls = {
-  // debug: true,
   autoStartLoad: true,
   enableWorker: true,
   lowLatencyMode: true,
@@ -23,31 +23,67 @@ const useHlsVideo = () => {
   const videoRef = useRef(null);
   const [error, setError] = useState(true);
 
-  const attachVideo = useCallback((url) => {
-    setError(true);
+  const attachVideo = (url) => {
+    videoRef.current.onplaying = () => {
+      if (!videoRef.current.src.includes(ruidoTV)) {
+        if (videoRef.current.readyState >= 1) {
+          setError(false);
+        } else {
+          setError(true);
+        }
+      }
+    };
     if (Hls.isSupported()) {
       const hls = new Hls(configHls);
       hls.loadSource(url);
       hls.attachMedia(videoRef.current);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        videoRef.current.play();
         setError(false);
+        videoRef.current.play();
       });
       hls.on(Hls.Events.ERROR, (e, data) => {
-        // hls.recoverMediaError();
-        if (videoRef.current.readyState > 0) {
-          setError(false);
-        } else {
-          setError(true);
-        }
         if (data.fatal) {
-          setError(true);
+          videoRef.current.onerror = () => {
+            videoRef.current.src = ruidoTV;
+            videoRef.current.loop = true;
+            videoRef.current.volume = 0.1;
+            setError(true);
+            videoRef.current.play();
+          };
+        } else {
+          hls.recoverMediaError();
         }
       });
-    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+    } else if (videoRef.current.canPlayType("video/mp4")) {
+      setError(true);
+      videoRef.current.pause();
       videoRef.current.src = url;
+      videoRef.current.play();
+
+      //funcion de error en la reproduccion
+      videoRef.current.onerror = () => {
+        videoRef.current.src = ruidoTV;
+        videoRef.current.loop = true;
+        videoRef.current.volume = 0.1;
+        setError(true);
+        videoRef.current.play();
+      };
+    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+      setError(true);
+      videoRef.current.pause();
+      videoRef.current.src = url;
+      videoRef.current.play();
+
+      //funcion de error en la reproduccion
+      videoRef.current.onerror = () => {
+        videoRef.current.src = ruidoTV;
+        videoRef.current.loop = true;
+        videoRef.current.volume = 0.1;
+        setError(true);
+        videoRef.current.play();
+      };
     }
-  }, []);
+  };
   return [attachVideo, error, videoRef];
 };
 
