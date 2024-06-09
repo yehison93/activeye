@@ -59,6 +59,10 @@
   font-size: 1.3em;
 }
 
+.button-video-cards:hover{
+  background-color: #ffffffbb;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(1);

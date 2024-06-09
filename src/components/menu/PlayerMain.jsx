@@ -31,7 +31,7 @@ const PlayerMain = () => {
           />
         </Row>
       </Container>
-      <Player settings={settings} videoRef={videoRef} error={error} />
+      <Player settings={settings} videoRef={videoRef} />
     </div>
   );
 };

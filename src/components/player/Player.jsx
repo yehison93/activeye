@@ -8,19 +8,18 @@ import {
   getRotation,
   getThetaLength,
 } from "./js/functionsPlayer";
-import ruidoTV from "../../assets/ruidoTV.mp4";
 import { useCallback } from "react";
 
 stereoComponent();
 
-const Player = ({ settings, videoRef, error }) => {
+const Player = ({ settings, videoRef }) => {
   const Camera = useCallback(() => {
     return (
       <>
         <Entity
           primitive="a-camera"
           camera="active: true"
-          wasd-controls
+          look-controls="enabled: true; magicWindowTrackingEnabled: true"
           position="0 1.7 0"
           stereocam={settings.eye ? "eye: left" : "eye: right"}
         >
@@ -36,7 +35,7 @@ const Player = ({ settings, videoRef, error }) => {
         <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
       </>
     );
-  }, [settings.backGround]);
+  }, []);
 
   const Tv = useCallback(() => {
     return (
@@ -67,7 +66,7 @@ const Player = ({ settings, videoRef, error }) => {
         />
       </>
     );
-  }, [error, settings.sizeTV, settings.stateVideo]);
+  }, [settings.sizeTV, settings.stateVideo]);
 
   const Parche = useCallback(() => {
     return (
@@ -101,8 +100,9 @@ const Player = ({ settings, videoRef, error }) => {
       fog={`type: exponential; color: ${settings.fog.color}; density: ${settings.fog.density}`}
       effect={true}
       embedded={!settings.stateVideo}
-      xr-mode-ui={`enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
+      xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
+      <Entity magicleap-controls="hand: right" />
       <Entity primitive="a-assets">
         <img id="sky" src={settings.backGround} />
         <img id="logo" src={settings.logo} />

@@ -19,8 +19,12 @@ const VideoCards = ({
   return (
     <>
       <Button
-        variant="outline-light "
-        style={{ border: "none", width: "100%" }}
+        variant="outline-light"
+        className="button-video-cards"
+        style={{
+          border: "none",
+          width: "100%",
+        }}
         onClick={() => {
           attachVideo(items.url);
           // triggerFull();

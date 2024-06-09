@@ -31,10 +31,10 @@ const MenuVideoSelect = ({
   const [viewButtonVideo, setViewButtonVideo] = useState(false);
 
   return (
-    <Container className="justify-content-center">
+    <Container>
       <Row style={{ position: "sticky", top: "0", zIndex: "2" }}>
         <Card
-          className="bg-transparent border-0 text-light p-0 mx-auto my-3"
+          className="bg-transparent border-0 text-light p-0 mx-auto my-1"
           style={{ width: "100%", boxShadow: "0 0 10px #000" }}
         >
           <Card.Header
@@ -95,7 +95,13 @@ const MenuVideoSelect = ({
         </Card>
       </Row>
 
-      <Row hidden={viewVideoSelect} xs={2} sm={3} md={"auto"}>
+      <Row
+        hidden={viewVideoSelect}
+        xs={2}
+        sm={3}
+        md={"auto"}
+        style={{ justifyContent: "center" }}
+      >
         {channels.map((item) => {
           return (
             <>

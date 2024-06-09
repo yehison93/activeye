@@ -18,7 +18,7 @@ const MenuConfigSelect = ({ settings, setSettings }) => {
   return (
     <>
       <Card
-        className="bg-transparent border-0 text-light p-0 mx-auto my-3"
+        className="bg-transparent border-0 text-light p-0 mx-auto my-1"
         style={{
           boxShadow: "0 0 10px #000",
           position: "relative",
@@ -30,6 +30,7 @@ const MenuConfigSelect = ({ settings, setSettings }) => {
             position: "sticky",
             top: "0",
             textAlign: "center",
+            zIndex: "2",
           }}
         >
           <Stack

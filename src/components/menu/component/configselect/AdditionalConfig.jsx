@@ -131,7 +131,6 @@ const AdditionalConfig = ({ settings, setSettings }) => {
                         "dimgrey",
                         "dodgerblue",
                         "firebrick",
-                        "floralwhite",
                         "forestgreen",
                         "fuchsia",
                         "gainsboro",
