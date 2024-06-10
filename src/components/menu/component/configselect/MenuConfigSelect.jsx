@@ -7,7 +7,7 @@ import AdditionalConfig from "./AdditionalConfig";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { HeadsetVr } from "react-bootstrap-icons";
 
-const MenuConfigSelect = ({ settings, setSettings }) => {
+const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
   const [addonsButton, setAddonsButton] = useState(false);
   const [viewSettings, setViewSettings] = useState(false);
   const [selectSettings, setSelectSettings] = useState({
@@ -54,7 +54,15 @@ const MenuConfigSelect = ({ settings, setSettings }) => {
               fontSize: "1rem",
               animation: selectSettings.eye ? "pulse 1s infinite" : "none",
             }}
-            hidden={!selectSettings.eye || !selectSettings.time}
+            hidden={
+              !selectSettings.eye ||
+              !selectSettings.time ||
+              settings.timeTherapy === 0
+            }
+            onClick={() => {
+              setShowMenu(false);
+              timeOut(settings.timeTherapy);
+            }}
             id="myEnterVRButton"
           >
             {` listo `} <HeadsetVr />
@@ -92,7 +100,7 @@ const MenuConfigSelect = ({ settings, setSettings }) => {
                 onChange={(e) => {
                   setSettings({
                     ...settings,
-                    time: e.target.value,
+                    timeTherapy: e.target.value,
                   });
                   setSelectSettings({
                     ...selectSettings,
@@ -101,7 +109,8 @@ const MenuConfigSelect = ({ settings, setSettings }) => {
                 }}
               >
                 <option>Selecciona el tiempo de duración </option>
-                {["30", "45", "60", "90", "120"].map((time) => (
+                <option value={1}>1 minuto (solo para pruebas)</option>
+                {[30, 45, 60, 90, 120].map((time) => (
                   <option key={time} value={time}>
                     {time} minutos
                   </option>

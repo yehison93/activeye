@@ -4,7 +4,14 @@ import MenuVideoSelect from "./videoselect/MenuVideoSelect";
 import MenuConfigSelect from "./configselect/MenuConfigSelect";
 import { useState } from "react";
 
-const MenuConfig = ({ videoError, settings, setSettings, attachVideo }) => {
+const MenuConfig = ({
+  videoError,
+  settings,
+  setSettings,
+  attachVideo,
+  setShowMenu,
+  timeOut,
+}) => {
   const [viewConfig, setViewConfig] = useState(false);
   return (
     <Container>
@@ -18,7 +25,12 @@ const MenuConfig = ({ videoError, settings, setSettings, attachVideo }) => {
         />
       </Row>
       <Row hidden={!viewConfig}>
-        <MenuConfigSelect settings={settings} setSettings={setSettings} />
+        <MenuConfigSelect
+          settings={settings}
+          setSettings={setSettings}
+          setShowMenu={setShowMenu}
+          timeOut={timeOut}
+        />
       </Row>
     </Container>
   );

@@ -12,44 +12,42 @@ import { useCallback } from "react";
 
 stereoComponent();
 
-const Player = ({ settings, videoRef }) => {
+const Player = ({ settings, videoRef, audioRef }) => {
   const Camera = useCallback(() => {
     return (
-      <>
-        <Entity
-          primitive="a-camera"
-          camera="active: true"
-          look-controls="enabled: true; magicWindowTrackingEnabled: true"
-          position="0 1.7 0"
-          stereocam={settings.eye ? "eye: left" : "eye: right"}
-        >
-          <Entity primitive="a-cursor" position="0 0 0"></Entity>
-        </Entity>
-      </>
+      <Entity
+        primitive="a-camera"
+        camera="active: true"
+        look-controls="enabled: true; magicWindowTrackingEnabled: true"
+        position="0 1.7 0"
+        rotation={settings.rotation}
+        stereocam={settings.eye ? "eye: left" : "eye: right"}
+      >
+        <Entity primitive="a-cursor" position="0 0 0"></Entity>
+      </Entity>
     );
-  }, [settings.eye]);
+  }, [settings.eye, settings.rotation]);
 
   const BackGround = useCallback(() => {
     return (
       <>
+        <img id="sky" src={settings.backGround} />
         <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
       </>
     );
-  }, []);
+  }, [settings.backGround]);
 
   const Tv = useCallback(() => {
     return (
       <>
         <Entity
           material="fog: false"
-          position="0 1.5 0"
+          position="0 1.5 0.5"
           primitive="a-curvedimage"
           src={"#logo"}
           visible={!settings.stateVideo}
-          height="4"
-          radius="10"
-          theta-length="70"
-          rotation="0 145 0"
+          theta-length="40"
+          rotation={"0 160 0"}
           scale="0.8 0.8 0.8"
         />
         <Entity
@@ -97,14 +95,13 @@ const Player = ({ settings, videoRef }) => {
           multiviewStereo: true;
           precision: medium;
         "
-      fog={`type: exponential; color: ${settings.fog.color}; density: ${settings.fog.density}`}
+      fog={`type: exponential; color: ${settings.fog.color};
+        density: ${settings.stateVideo ? settings.fog.density : 0.002}`}
       effect={true}
       embedded={!settings.stateVideo}
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
-      <Entity magicleap-controls="hand: right" />
       <Entity primitive="a-assets">
-        <img id="sky" src={settings.backGround} />
         <img id="logo" src={settings.logo} />
         <video
           id="videoassets"
@@ -117,12 +114,19 @@ const Player = ({ settings, videoRef }) => {
           width={16}
           height={9}
           playsInline={true}
-          webkit-playsinline={true}
-        ></video>
+        />
+        <audio
+          ref={audioRef}
+          autoPlay={true}
+          muted={!settings.stateVideo}
+          crossOrigin={"anonymous"}
+          preload="metadata"
+          controls={true}
+        />
       </Entity>
       <Camera />
       <BackGround />
-      <Parche />
+      {settings.timeTherapy !== 0 ? <Parche /> : null}
       <Tv />
     </Scene>
   );
