@@ -61,7 +61,8 @@ const useHlsVideo = () => {
       videoRef.current.play();
 
       //funcion de error en la reproduccion
-      videoRef.current.onerror = () => {
+      videoRef.current.onerror = (err) => {
+        console.log(err);
         videoRef.current.src = ruidoTV;
         videoRef.current.loop = true;
         videoRef.current.volume = 0.1;
@@ -75,7 +76,8 @@ const useHlsVideo = () => {
       videoRef.current.play();
 
       //funcion de error en la reproduccion
-      videoRef.current.onerror = () => {
+      videoRef.current.onerror = (err) => {
+        console.log(err);
         videoRef.current.src = ruidoTV;
         videoRef.current.loop = true;
         videoRef.current.volume = 0.1;

@@ -12,7 +12,7 @@ const VideoCards = ({
   setSettings,
   setViewButtonVideo,
 }) => {
-  const SpecificFlag = Flags[items.tvg.id.split(".")[1].toUpperCase()];
+  // const SpecificFlag = Flags[items.tvg.id.split(".")[1].toUpperCase()];
   const [triggerFull] = useFullScreen(null);
   const { released, request, release } = useWakeLock();
 
@@ -84,7 +84,7 @@ const VideoCards = ({
           >
             {`${items.name} `}
             <br />
-            <SpecificFlag style={{ width: "1em" }} />
+            {/* <SpecificFlag style={{ width: "1em" }} /> */}
           </Card.Footer>
         </Card>
       </Button>

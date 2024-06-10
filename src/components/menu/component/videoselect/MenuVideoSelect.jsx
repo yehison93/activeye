@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import VideoCards from "./VideoCards";
 import useM3uToJson from "../../customHooks/UseM3uToJson";
-import { m3uFile } from "../../../../assets/kidsList";
+import { m3uFile } from "../../../../assets/plutoTV";
 import { useState } from "react";
 import useForm from "../../customHooks/UseForm";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
@@ -48,7 +48,7 @@ const MenuVideoSelect = ({
               gap={3}
               style={{ justifyContent: "center" }}
             >
-              <h2 className="text-center">Selecciona un canal</h2>
+              <h2 className="text-center">Canales</h2>
               <Button
                 variant="outline-link"
                 style={{ border: "none" }}

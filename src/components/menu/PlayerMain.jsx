@@ -9,6 +9,10 @@ import usePlaySound from "../player/customHooks/usePlaySound.jsx";
 import alertSound from "../../assets/alertFinishTherapy.mp3";
 import { List, Eyeglasses } from "react-bootstrap-icons";
 
+const random = () => {
+  return Math.random() * 0.9;
+};
+
 const PlayerMain = () => {
   const [settings, setSettings] = useState({
     logo: logo,
@@ -58,9 +62,7 @@ const PlayerMain = () => {
         onClick={() =>
           setSettings({
             ...settings,
-            rotation: `0 ${() => {
-              return Math.random() * 0.9;
-            }} 0`,
+            rotation: `0 ${random()} 0`,
           })
         }
       >
