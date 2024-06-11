@@ -7,12 +7,12 @@ export default defineConfig({
   plugins: [react(), basicSsl()],
   server: {
     https: true,
-    proxy: {
-      "/api": {
-        target: "https://stitcher-ipv4.pluto.tv/",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
+    // proxy: {
+    //   "/api": {
+    //     target: "https://stitcher-ipv4.pluto.tv/",
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, ""),
+    //   },
+    // },
   },
 });
