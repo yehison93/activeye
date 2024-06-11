@@ -85,7 +85,7 @@ const VideoCards = ({
               alt={`logo del canal ${items.name}`}
               style={{
                 opacity: 0.9,
-                width: "100px",
+                width: "100%",
                 height: "auto",
                 margin: "0 auto",
                 padding: 0,
