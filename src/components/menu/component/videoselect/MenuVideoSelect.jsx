@@ -107,19 +107,16 @@ const MenuVideoSelect = ({
       >
         {channels.map((item) => {
           return (
-            <>
-              <Col className="py-1">
-                <VideoCards
-                  key={uuidv4()}
-                  items={item}
-                  setNameChannel={setNameChannel}
-                  attachVideo={attachVideo}
-                  settings={settings}
-                  setSettings={setSettings}
-                  setViewButtonVideo={setViewButtonVideo}
-                />
-              </Col>
-            </>
+            <Col className="py-1" key={uuidv4()}>
+              <VideoCards
+                items={item}
+                setNameChannel={setNameChannel}
+                attachVideo={attachVideo}
+                settings={settings}
+                setSettings={setSettings}
+                setViewButtonVideo={setViewButtonVideo}
+              />
+            </Col>
           );
         })}
       </Row>
