@@ -30,7 +30,7 @@ const PlayerMain = () => {
     const timeOutId = setTimeout(() => {
       playSound(alertSound);
       setSettings({ ...settings, timeTherapy: 0 });
-    }, time * 6000);
+    }, time * 60000);
     return () => clearTimeout(timeOutId);
   };
   const [attachVideo, error, videoRef] = useHlsVideo();
