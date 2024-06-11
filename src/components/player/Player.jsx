@@ -111,7 +111,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
           preload="metadata"
           ref={videoRef}
           autoPlay={true}
-          // crossOrigin={"anonymous"}
+          crossOrigin={"include"}
           muted={!settings.stateVideo}
           width={16}
           height={9}
