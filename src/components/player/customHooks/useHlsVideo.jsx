@@ -54,7 +54,7 @@ const useHlsVideo = () => {
           hls.recoverMediaError();
         }
       });
-    } else if (videoRef.current.canPlayType("video/mp4")) {
+    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
       setError(true);
       videoRef.current.pause();
       videoRef.current.src = url;
@@ -69,7 +69,7 @@ const useHlsVideo = () => {
         setError(true);
         videoRef.current.play();
       };
-    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+    } else if (videoRef.current.canPlayType("video/mp4")) {
       setError(true);
       videoRef.current.pause();
       videoRef.current.src = url;
