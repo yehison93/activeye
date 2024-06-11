@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+import ModalAlert from "./ModalAlert";
 import { Button, Card } from "react-bootstrap";
-import * as Flags from "country-flag-icons/react/3x2";
-import useFullScreen from "../../../player/customHooks/useFullScreen";
 import { useWakeLock } from "react-screen-wake-lock";
 
 const VideoCards = ({
@@ -12,12 +12,42 @@ const VideoCards = ({
   setSettings,
   setViewButtonVideo,
 }) => {
-  // const SpecificFlag = Flags[items.tvg.id.split(".")[1].toUpperCase()];
-  const [triggerFull] = useFullScreen(null);
+  // const [triggerFull] = useFullScreen(null);
   const { released, request, release } = useWakeLock();
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+
+  const url = () => {
+    if (items.url.includes("r.mjh.nz")) {
+      return `https://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/${items.tvg.id}/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus&`;
+    } else {
+      return items.url;
+    }
+  };
+
+  const toogle = () => {
+    attachVideo(url());
+    released === false ? release() : request();
+    setNameChannel(items.name);
+    setSettings({ ...settings, stateVideo: true });
+    setViewButtonVideo(true);
+  };
+
+  const showTV = () => {
+    if (!items.group.title.toLowerCase().includes("kids")) {
+      setShowModal(true);
+    } else {
+      toogle();
+    }
+  };
 
   return (
     <>
+      <ModalAlert
+        show={showModal}
+        handleClose={handleCloseModal}
+        modalAction={toogle}
+      />
       <Button
         variant="outline-light"
         className="button-video-cards"
@@ -25,14 +55,7 @@ const VideoCards = ({
           border: "none",
           width: "100%",
         }}
-        onClick={() => {
-          attachVideo(items.url);
-          // triggerFull();
-          released === false ? release() : request();
-          setNameChannel(items.name);
-          setSettings({ ...settings, stateVideo: true });
-          setViewButtonVideo(true);
-        }}
+        onClick={() => showTV()}
       >
         <Card
           className="text-light m-auto p-0"
@@ -60,6 +83,7 @@ const VideoCards = ({
           >
             <Card.Img
               src={items.tvg.logo}
+              alt={`logo del canal ${items.name}`}
               style={{
                 opacity: 0.9,
                 width: "100px",
@@ -67,6 +91,7 @@ const VideoCards = ({
                 margin: "0 auto",
                 padding: 0,
               }}
+              loading="lazy"
             />
           </Card.Body>
 
@@ -83,8 +108,6 @@ const VideoCards = ({
             }}
           >
             {`${items.name} `}
-            <br />
-            {/* <SpecificFlag style={{ width: "1em" }} /> */}
           </Card.Footer>
         </Card>
       </Button>

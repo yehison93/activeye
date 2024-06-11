@@ -19,7 +19,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
         primitive="a-camera"
         camera="active: true"
         look-controls="enabled: true; magicWindowTrackingEnabled: true"
-        position="0 1.7 0"
+        position="0 1 0"
         rotation={settings.rotation}
         stereocam={settings.eye ? "eye: left" : "eye: right"}
       >
@@ -42,17 +42,16 @@ const Player = ({ settings, videoRef, audioRef }) => {
       <>
         <Entity
           material="fog: false"
-          position="0 1.5 0.5"
+          position="0 1 0.5"
           primitive="a-curvedimage"
           src={"#logo"}
-          visible={!settings.stateVideo}
           theta-length="40"
-          rotation={"0 160 0"}
+          rotation={settings.stateVideo ? "0 340 0" : "0 160 0"}
           scale="0.8 0.8 0.8"
         />
         <Entity
           material={"fog: false"}
-          position="0 1.5 0"
+          position="0 1.7 0"
           primitive="a-curvedimage"
           src={"#videoassets"}
           visible={settings.stateVideo}
@@ -71,13 +70,14 @@ const Player = ({ settings, videoRef, audioRef }) => {
       <>
         <Entity
           primitive="a-sky"
+          visible={settings.timeTherapy !== 0}
           color="black"
           radius="8"
           stereo={settings.eye ? "eye: right" : "eye: left"}
         />
       </>
     );
-  }, [settings.eye]);
+  }, [settings.eye, settings.timeTherapy]);
 
   return (
     <Scene
@@ -126,7 +126,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
       </Entity>
       <Camera />
       <BackGround />
-      {settings.timeTherapy !== 0 ? <Parche /> : null}
+      <Parche />
       <Tv />
     </Scene>
   );

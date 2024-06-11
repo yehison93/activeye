@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import VideoCards from "./VideoCards";
 import useM3uToJson from "../../customHooks/UseM3uToJson";
-import { m3uFile } from "../../../../assets/plutoTV";
+import { m3uFile } from "../../../../assets/iptvList";
 import { useState } from "react";
 import useForm from "../../customHooks/UseForm";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
@@ -25,7 +25,10 @@ const MenuVideoSelect = ({
   setSettings,
 }) => {
   const [parsed] = useM3uToJson({ m3uFile });
-  const [channels, onChange] = useForm(parsed);
+  const [channels, onChange] = useForm({
+    parsed,
+    initialSearch: "kids",
+  });
   const [nameChannel, setNameChannel] = useState("");
   const [viewVideoSelect, setViewVideoSelect] = useState(false);
   const [viewButtonVideo, setViewButtonVideo] = useState(false);
@@ -83,11 +86,11 @@ const MenuVideoSelect = ({
             <FloatingLabel
               controlId="floatingInput"
               label="Busca aquí y selecciona un canal"
-              className="fs-5 text-dark"
+              className="text-dark"
             >
               <Form.Control
                 type="text"
-                placeholder=""
+                placeholder="kids"
                 onChange={(e) => onChange(e.target.value)}
               />
             </FloatingLabel>
@@ -103,6 +106,7 @@ const MenuVideoSelect = ({
         style={{ justifyContent: "center" }}
       >
         {channels.map((item) => {
+          // console.log(item);
           return (
             <>
               <Col className="py-1">
