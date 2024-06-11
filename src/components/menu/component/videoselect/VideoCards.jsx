@@ -59,7 +59,7 @@ const VideoCards = ({
         <Card
           className="text-light m-auto p-0"
           style={{
-            minWidth: "100%",
+            maxWidth: "150px",
             backgroundColor: "transparent",
             boxShadow: "0 0 10px #000",
           }}
