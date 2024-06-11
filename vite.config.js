@@ -8,10 +8,10 @@ export default defineConfig({
   server: {
     https: true,
     proxy: {
-      "/v1": {
+      "/api": {
         target: "https://stitcher-ipv4.pluto.tv/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/v1/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
