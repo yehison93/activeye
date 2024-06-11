@@ -25,9 +25,9 @@ const AdditionalConfig = ({ settings, setSettings }) => {
             }
           >
             <option>Selecciona el tamaño </option>
-            <option value={"small"}>30 pulgadas </option>
-            <option value={"normal"}>50 pulgadas </option>
-            <option value={"big"}>70 pulgadas </option>
+            <option value={"small"}>40 pulgadas (normal) </option>
+            <option value={"normal"}>60 pulgadas (grande) </option>
+            <option value={"big"}>80 pulgadas (muy grande)</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">

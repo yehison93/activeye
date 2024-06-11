@@ -4,6 +4,7 @@ const usePlaySound = () => {
   const audioRef = useRef(null);
   const playAudio = (url) => {
     audioRef.current.src = url;
+    audioRef.current.muted = false;
     audioRef.current.volume = 1;
     audioRef.current.play();
   };
