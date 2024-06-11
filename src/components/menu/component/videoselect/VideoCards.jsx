@@ -12,7 +12,6 @@ const VideoCards = ({
   setSettings,
   setViewButtonVideo,
 }) => {
-  // const [triggerFull] = useFullScreen(null);
   const { released, request, release } = useWakeLock();
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);

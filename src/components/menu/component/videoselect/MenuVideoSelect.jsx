@@ -106,7 +106,6 @@ const MenuVideoSelect = ({
         style={{ justifyContent: "center" }}
       >
         {channels.map((item) => {
-          // console.log(item);
           return (
             <>
               <Col className="py-1">
