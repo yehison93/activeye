@@ -58,6 +58,7 @@ const PlayerMain = () => {
           right: 0,
           zIndex: 5,
         }}
+        hidden={!showMenu}
         variant="outline-link fs-1 text-light"
         onClick={() =>
           setSettings({

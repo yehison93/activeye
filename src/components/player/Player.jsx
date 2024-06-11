@@ -42,9 +42,11 @@ const Player = ({ settings, videoRef, audioRef }) => {
       <>
         <Entity
           material="fog: false"
-          position="0 1 0.5"
+          position="0 1 0"
           primitive="a-curvedimage"
           src={"#logo"}
+          height="10"
+          radius="20"
           theta-length="40"
           rotation={settings.stateVideo ? "0 340 0" : "0 160 0"}
           scale="0.8 0.8 0.8"
