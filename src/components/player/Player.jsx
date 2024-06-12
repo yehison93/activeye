@@ -20,7 +20,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
         look-controls="enabled: true; magicWindowTrackingEnabled: true"
         position="0 1 0"
         rotation={settings.rotation}
-        stereocam={settings.eye ? "eye: left" : "eye: right"}
+        // stereocam={settings.eye ? "eye: left" : "eye: right"}
       >
         <Entity primitive="a-cursor" position="0 0 0"></Entity>
       </Entity>
@@ -38,7 +38,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
   const Tv = useCallback(() => {
     return (
       <>
-        <Entity
+        {/* <Entity
           material="fog: false"
           position="0 1 0"
           primitive="a-curvedimage"
@@ -48,7 +48,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
           theta-length="40"
           rotation={settings.stateVideo ? "0 340 0" : "0 160 0"}
           scale="0.8 0.8 0.8"
-        />
+        /> */}
         <Entity
           material={"fog: false"}
           position="0 1.7 0"
@@ -82,7 +82,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
   return (
     <Scene
       className="container-player"
-      style={{ with: "100%", height: "100%" }}
+      // style={{ with: "100%", height: "100%" }}
       device-orientation-permission-ui="
           enabled: true;
           denyButtonText: Denegar;
