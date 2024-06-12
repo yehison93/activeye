@@ -30,7 +30,6 @@ const Player = ({ settings, videoRef, audioRef }) => {
   const BackGround = useCallback(() => {
     return (
       <>
-        <img id="sky" src={settings.backGround} />
         <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
       </>
     );
@@ -103,6 +102,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
       <Entity primitive="a-assets">
+        <img id="sky" src={settings.backGround} />
         <img id="logo" src={settings.logo} />
         <video
           id="videoassets"
