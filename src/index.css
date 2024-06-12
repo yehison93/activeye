@@ -3,5 +3,6 @@ html, body{
   padding: 0;
   -webkit-user-select: none;
   user-select: none;
+  background-color: black;
   /* overflow: hidden; */
 }
