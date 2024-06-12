@@ -30,6 +30,9 @@ const Player = ({ settings, videoRef, audioRef }) => {
   const BackGround = useCallback(() => {
     return (
       <>
+        <Entity primitive="a-assets">
+          <img id="sky" src={settings.backGround} />
+        </Entity>
         <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
       </>
     );
@@ -82,7 +85,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
   return (
     <Scene
       className="container-player"
-      style={{ with: "100%", height: "100%" }}
+      style={{ with: "100vw", height: "100vh", margin: "0", padding: "0" }}
       device-orientation-permission-ui="
           enabled: true;
           denyButtonText: Denegar;
@@ -102,7 +105,6 @@ const Player = ({ settings, videoRef, audioRef }) => {
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
       <Entity primitive="a-assets">
-        <img id="sky" src={settings.backGround} />
         <img id="logo" src={settings.logo} />
         <video
           id="videoassets"

@@ -6,6 +6,7 @@ import { ChevronUp } from "react-bootstrap-icons";
 import AdditionalConfig from "./AdditionalConfig";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { HeadsetVr } from "react-bootstrap-icons";
+import useFullScreen from "../../../player/customHooks/useFullScreen";
 
 const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
   const [addonsButton, setAddonsButton] = useState(false);
@@ -14,6 +15,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
     eye: false,
     time: false,
   });
+  const toggleFullScreen = useFullScreen();
 
   return (
     <>
@@ -62,6 +64,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
             onClick={() => {
               setShowMenu(false);
               timeOut(settings.timeTherapy);
+              toggleFullScreen();
             }}
             id="myEnterVRButton"
           >

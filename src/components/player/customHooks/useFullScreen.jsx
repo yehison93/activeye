@@ -1,20 +1,14 @@
-const useFullScreen = (callback) => {
-  const element = document.documentElement;
-  const triggerFull = () => {
-    if (element) {
-      element.requestFullscreen();
-      if (callback && typeof callback === "function") {
-        callback(true);
+const useFullScreen = () => {
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
       }
     }
   };
-  const exitFull = () => {
-    document.exitFullscreen();
-    if (callback && typeof callback === "function") {
-      callback(false);
-    }
-  };
-  return [triggerFull, exitFull];
+  return toggleFullScreen;
 };
 
 export default useFullScreen;
