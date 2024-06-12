@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import "aframe";
-import "aframe-gif-shader";
 import { Scene, Entity } from "aframe-react";
 import {
   stereoComponent,
