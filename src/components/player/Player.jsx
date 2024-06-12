@@ -127,7 +127,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
       </Entity>
       <Camera />
       <BackGround />
-      {/* <Parche /> */}
+      <Parche />
       <Tv />
     </Scene>
   );
