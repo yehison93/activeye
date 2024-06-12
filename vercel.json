@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/v1/*",
-      "destination": "https://stitcher-ipv4.pluto.tv/v1/*"
+      "source": "/api/*",
+      "destination": "https://stitcher-ipv4.pluto.tv/api/*"
     }
   ]
 }
