@@ -24,10 +24,26 @@ const AdditionalConfig = ({ settings, setSettings }) => {
               })
             }
           >
-            <option>Selecciona el tamaño </option>
+            <option>Selecciona el tamaño del TV </option>
             <option value={"small"}>40 pulgadas (normal) </option>
             <option value={"normal"}>60 pulgadas (grande) </option>
             <option value={"big"}>80 pulgadas (muy grande)</option>
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Posición del TV</Form.Label>
+          <Form.Select
+            onChange={(e) =>
+              setSettings({
+                ...settings,
+                positionTV: e.target.value,
+              })
+            }
+          >
+            <option>Selecciona la altura del TV </option>
+            <option value={"1.5"}>Sentado normal (normal)</option>
+            <option value={"5"}>Reclinado (alto)</option>
+            <option value={"10"}>Acostado (muy alto)</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">

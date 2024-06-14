@@ -8,22 +8,35 @@ import MenuConfig from "./component/MenuConfig.jsx";
 import usePlaySound from "../player/customHooks/usePlaySound.jsx";
 import alertSound from "../../assets/alertFinishTherapy.mp3";
 import { List, Eyeglasses } from "react-bootstrap-icons";
+import useLocalStorage from "../player/customHooks/useLocalStorage.jsx";
+import { useEffect } from "react";
+import useShake from "./customHooks/useShake.jsx";
 
 const random = () => {
   return Math.random() * 0.9;
 };
+const defaultSettings = {
+  logo: logo,
+  eye: false, //true: right, false: left
+  timeTherapy: null,
+  backGround: FondoDefault,
+  fog: { density: 0, color: "white" }, //la densidad se gradúa desde 0.001 a 0.005 se recomienda de 0.001 a 0.003
+  sizeTV: "normal",
+  positionTV: "1.5",
+  stateVideo: false,
+  rotation: "0 0 0",
+  videoUrl: "",
+  videoName: "",
+};
 
 const PlayerMain = () => {
-  const [settings, setSettings] = useState({
-    logo: logo,
-    eye: false, //true: right, false: left
-    timeTherapy: null,
-    backGround: FondoDefault,
-    fog: { density: 0, color: "white" }, //la densidad se gradúa desde 0.001 a 0.005 se recomienda de 0.001 a 0.003
-    sizeTV: "normal",
-    stateVideo: false,
-    rotation: "0 0 0",
-  });
+  const [settings, setSettings] = useLocalStorage(defaultSettings, "settings");
+
+  useEffect(() => {
+    console.log("Solo al iniciar");
+    setSettings({ ...settings, timeTherapy: null, stateVideo: false });
+  }, []);
+
   const [audioRef, playSound] = usePlaySound();
 
   const timeOut = (time) => {
@@ -33,8 +46,14 @@ const PlayerMain = () => {
     }, time * 60000);
     return () => clearTimeout(timeOutId);
   };
-  const [attachVideo, error, videoRef] = useHlsVideo();
+  const [attachVideo, error, playerRef] = useHlsVideo();
   const [showMenu, setShowMenu] = useState(true);
+  const funcShake = () => {
+    playerRef.current.load();
+    playerRef.current.play();
+  };
+
+  useShake(settings.stateVideo, funcShake);
 
   return (
     <div className="player-main">
@@ -82,7 +101,7 @@ const PlayerMain = () => {
           />
         </Row>
       </Container>
-      <Player settings={settings} videoRef={videoRef} audioRef={audioRef} />
+      <Player settings={settings} playerRef={playerRef} audioRef={audioRef} />
     </div>
   );
 };

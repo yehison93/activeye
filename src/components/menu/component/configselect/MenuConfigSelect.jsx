@@ -8,6 +8,10 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { HeadsetVr } from "react-bootstrap-icons";
 import useFullScreen from "../../../player/customHooks/useFullScreen";
 
+const random = () => {
+  return Math.random() * 0.9;
+};
+
 const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
   const [addonsButton, setAddonsButton] = useState(false);
   const [viewSettings, setViewSettings] = useState(false);
@@ -61,6 +65,9 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
               !selectSettings.time ||
               settings.timeTherapy === 0
             }
+            onClickCapture={() => {
+              setSettings({ ...settings, rotation: `0 ${random()} 0` });
+            }}
             onClick={() => {
               setShowMenu(false);
               timeOut(settings.timeTherapy);
@@ -84,6 +91,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                   setSettings({
                     ...settings,
                     eye: e.target.value === "true" ? true : false,
+                    rotation: `0 ${random()} 0`,
                   });
                   setSelectSettings({
                     ...selectSettings,
@@ -104,6 +112,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                   setSettings({
                     ...settings,
                     timeTherapy: e.target.value,
+                    rotation: `0 ${random()} 0`,
                   });
                   setSelectSettings({
                     ...selectSettings,

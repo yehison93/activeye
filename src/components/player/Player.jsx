@@ -8,17 +8,59 @@ import {
   getThetaLength,
 } from "./js/functionsPlayer";
 import { useCallback } from "react";
+import ReactHlsPlayer from "react-hls-player";
 
 stereoComponent();
 
-const Player = ({ settings, videoRef, audioRef }) => {
+var hlsConfig = {
+  autoStartLoad: true,
+  startPosition: -1,
+  capLevelOnFPSDrop: false,
+  initialLiveManifestSize: 3,
+  maxBufferLength: 30,
+  maxMaxBufferLength: 600,
+  maxBufferHole: 0.5,
+  liveSyncDurationCount: 3,
+  enableWorker: true,
+  enableSoftwareAES: true,
+  fragLoadPolicy: {
+    default: {
+      maxTimeToFirstByteMs: 9000,
+      maxLoadTimeMs: 100000,
+      timeoutRetry: {
+        maxNumRetry: 2,
+        retryDelayMs: 0,
+        maxRetryDelayMs: 0,
+      },
+      errorRetry: {
+        maxNumRetry: 10,
+        retryDelayMs: 1000,
+        maxRetryDelayMs: 15000,
+        backoff: "linear",
+      },
+    },
+  },
+  lowLatencyMode: true,
+  fpsDroppedMonitoringPeriod: 5000,
+  fpsDroppedMonitoringThreshold: 0.2,
+  appendErrorMaxRetry: 3,
+  abrEwmaFastLive: 3.0,
+  abrEwmaSlowLive: 9.0,
+  abrEwmaDefaultEstimate: 500000,
+  abrBandWidthFactor: 0.95,
+  abrBandWidthUpFactor: 0.7,
+  maxStarvationDelay: 4,
+  maxLoadingDelay: 4,
+};
+
+const Player = ({ settings, playerRef, audioRef }) => {
   const Camera = useCallback(() => {
     return (
       <Entity
         primitive="a-camera"
         camera="active: true"
         look-controls="enabled: true; magicWindowTrackingEnabled: true"
-        position="0 1 0"
+        position="0 0.9 0"
         rotation={settings.rotation}
         stereocam={settings.eye ? "eye: left" : "eye: right"}
       >
@@ -30,9 +72,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
   const BackGround = useCallback(() => {
     return (
       <>
-        <Entity primitive="a-assets">
-          <img id="sky" src={settings.backGround} />
-        </Entity>
+        <img id="sky" src={settings.backGround} />
         <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
       </>
     );
@@ -54,19 +94,19 @@ const Player = ({ settings, videoRef, audioRef }) => {
         />
         <Entity
           material={"fog: false"}
-          position="0 1.7 0"
+          position={`0 ${settings.positionTV} 0`}
           primitive="a-curvedimage"
           src={"#videoassets"}
           visible={settings.stateVideo}
           height={getHeight(settings.sizeTV)}
           radius="20"
           theta-length={getThetaLength(settings.sizeTV)}
-          rotation={getRotation(settings.sizeTV)}
+          rotation={`-10 ${getRotation(settings.sizeTV)} 10`}
           scale="0.8 0.8 0.8"
         />
       </>
     );
-  }, [settings.sizeTV, settings.stateVideo]);
+  }, [settings.positionTV, settings.sizeTV, settings.stateVideo]);
 
   const Parche = useCallback(() => {
     return (
@@ -75,7 +115,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
           primitive="a-sky"
           visible={settings.timeTherapy !== 0}
           color="black"
-          radius="8"
+          radius="5"
           stereo={settings.eye ? "eye: right" : "eye: left"}
         />
       </>
@@ -92,6 +132,7 @@ const Player = ({ settings, videoRef, audioRef }) => {
           allowButtonText: Permitir;
           deviceMotionMessage: Esta es una app de VR que requiere de tu permiso para acceder a los sensores de movimiento de tu dispositivo, deberías aceptar para que tengas la mejor experiencia posible.;
         "
+      loading-screen="dotsColor: #072b7c; backgroundColor: #6cc6ccb0"
       renderer="
           highRefreshRate: true;
           foveationLevel: 1;
@@ -105,19 +146,20 @@ const Player = ({ settings, videoRef, audioRef }) => {
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
       <Entity primitive="a-assets">
-        <img id="logo" src={settings.logo} />
-        <video
+        <ReactHlsPlayer
           id="videoassets"
           controls={true}
+          hlsConfig={hlsConfig}
           preload="metadata"
-          ref={videoRef}
-          autoPlay={true}
+          playerRef={playerRef}
+          autoPlay={false}
           crossOrigin={"anonymous"}
           muted={!settings.stateVideo}
           width={16}
           height={9}
           playsInline={true}
         />
+        <img id="logo" src={settings.logo} />
         <audio
           ref={audioRef}
           autoPlay={true}

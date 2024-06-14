@@ -25,11 +25,10 @@ const MenuVideoSelect = ({
   setSettings,
 }) => {
   const [parsed] = useM3uToJson({ m3uFile });
-  const [channels, onChange] = useForm({
+  const [channels, onChangeChannels] = useForm({
     parsed,
     initialSearch: "kids",
   });
-  const [nameChannel, setNameChannel] = useState("");
   const [viewVideoSelect, setViewVideoSelect] = useState(false);
   const [viewButtonVideo, setViewButtonVideo] = useState(false);
 
@@ -75,7 +74,9 @@ const MenuVideoSelect = ({
                 setViewButtonVideo(false);
               }}
             >
-              {!videoError ? `${nameChannel} listo` : "ningún canal listo"}
+              {!videoError
+                ? `${settings.videoName} listo`
+                : "ningún canal listo"}
             </Button>
           </Card.Header>
           <Card.Footer
@@ -91,7 +92,7 @@ const MenuVideoSelect = ({
               <Form.Control
                 type="text"
                 placeholder="kids"
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => onChangeChannels(e.target.value)}
               />
             </FloatingLabel>
           </Card.Footer>
@@ -110,7 +111,6 @@ const MenuVideoSelect = ({
             <Col className="py-1" key={uuidv4()}>
               <VideoCards
                 items={item}
-                setNameChannel={setNameChannel}
                 attachVideo={attachVideo}
                 settings={settings}
                 setSettings={setSettings}

@@ -6,7 +6,6 @@ import { useWakeLock } from "react-screen-wake-lock";
 
 const VideoCards = ({
   items,
-  setNameChannel,
   attachVideo,
   settings,
   setSettings,
@@ -18,17 +17,22 @@ const VideoCards = ({
 
   const url = () => {
     if (items.url.includes("r.mjh.nz")) {
-      return `/api/v1/stitch/embed/hls/channel/${items.tvg.id}/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus&`;
+      const urlApi = `/api/v1/stitch/embed/hls/channel/${items.tvg.id}/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus&`;
+      return urlApi;
     } else {
       return items.url;
     }
   };
 
-  const toogle = () => {
+  const actionsVideo = () => {
+    setSettings({
+      ...settings,
+      stateVideo: true,
+      videoUrl: url(),
+      videoName: items.name,
+    });
     attachVideo(url());
     released === false ? release() : request();
-    setNameChannel(items.name);
-    setSettings({ ...settings, stateVideo: true });
     setViewButtonVideo(true);
   };
 
@@ -36,7 +40,7 @@ const VideoCards = ({
     if (!items.group.title.toLowerCase().includes("kids")) {
       setShowModal(true);
     } else {
-      toogle();
+      actionsVideo();
     }
   };
 
@@ -45,7 +49,7 @@ const VideoCards = ({
       <ModalAlert
         show={showModal}
         handleClose={handleCloseModal}
-        modalAction={toogle}
+        modalAction={actionsVideo}
       />
       <Button
         variant="outline-light"

@@ -24,7 +24,7 @@ function ModalAlert({ show, handleClose, modalAction }) {
         <Button variant="success" onClick={handleClose}>
           Cerrar
         </Button>
-        <Button variant="warning" onClick={modalAction}>
+        <Button variant="warning" onClick={() => modalAction()}>
           Continuar
         </Button>
       </Modal.Footer>
