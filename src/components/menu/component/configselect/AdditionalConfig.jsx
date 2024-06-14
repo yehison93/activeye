@@ -3,14 +3,6 @@ import { Card, Col, Row, Form } from "react-bootstrap";
 
 const AdditionalConfig = ({ settings, setSettings }) => {
   const backGrounds = import.meta.glob("../../../../assets/backgroundScenes/*");
-  const tempUrl = async (value) => {
-    const image = await import(value);
-    try {
-      return image.default;
-    } catch (err) {
-      console.error(err);
-    }
-  };
   return (
     <>
       <Card.Body className="text-light">
@@ -49,13 +41,15 @@ const AdditionalConfig = ({ settings, setSettings }) => {
         <Form.Group className="mb-3">
           <Form.Label>Selecciona la imagen del entorno</Form.Label>
           <Form.Select
-            onChange={(e) => {
-              tempUrl(e.target.value).then((res) => {
+            onChange={async (e) => {
+              const importFunc = backGrounds[e.target.value];
+              if (importFunc) {
+                const image = await importFunc();
                 setSettings({
                   ...settings,
-                  backGround: res,
+                  backGround: image.default,
                 });
-              });
+              }
             }}
           >
             <option>Selecciona un fondo </option>

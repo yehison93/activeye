@@ -33,7 +33,6 @@ const PlayerMain = () => {
   const [settings, setSettings] = useLocalStorage(defaultSettings, "settings");
 
   useEffect(() => {
-    console.log("Solo al iniciar");
     setSettings({ ...settings, timeTherapy: null, stateVideo: false });
   }, []);
 
