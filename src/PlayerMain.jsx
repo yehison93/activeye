@@ -102,7 +102,6 @@ const PlayerMain = () => {
         rotation: "0 0 0",
       }));
       finishTime();
-      console.log("finish");
     }
   });
 
