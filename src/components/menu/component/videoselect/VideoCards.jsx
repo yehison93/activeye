@@ -81,7 +81,6 @@ const VideoCards = ({
               width: "100%",
               height: "100px",
               margin: "auto",
-              overflow: "scroll",
             }}
           >
             <Card.Img
