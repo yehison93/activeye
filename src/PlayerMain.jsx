@@ -16,6 +16,7 @@ import alertSound from "./assets/alertFinishTherapy.mp3";
 
 import { List, Eyeglasses } from "react-bootstrap-icons";
 import useVrState from "./components/player/customHooks/useVrState.jsx";
+import useTimeOut from "./components/menu/customHooks/useTimeOut.jsx";
 
 const random = () => {
   return Math.random() * 0.9;
@@ -52,48 +53,15 @@ const PlayerMain = () => {
         modeVR: false,
       }));
       setHasInitialized(true);
-    } else if (!settings.modeVR) {
-      setSettings((prevSettings) => ({
-        ...prevSettings,
-        timeTherapy: null,
-        rotation: "0 0 0",
-        modeVR: false,
-      }));
     }
-  }, [hasInitialized, settings.modeVR]);
+  }, [hasInitialized]);
 
-  useVrState((currentIsVr) => {
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      modeVR: currentIsVr,
-    }));
-  });
+  const [attachVideo, error, playerRef] = useHlsVideo();
+
+  const [showMenu, setShowMenu] = useState(true);
 
   const [audioRef, playSound] = usePlaySound();
 
-  const timeOut = (initialTime) => {
-    let timeLeft = initialTime * 60;
-
-    const finishTime = () => {
-      clearInterval(intervalId);
-      playSound(alertSound);
-    };
-
-    const intervalId = setInterval(() => {
-      timeLeft -= 1;
-      setSettings((prevSettings) => ({
-        ...prevSettings,
-        timeTherapy: timeLeft,
-      }));
-
-      if (timeLeft <= 0 || !timeLeft) {
-        finishTime();
-      }
-    }, 1000);
-  };
-
-  const [attachVideo, error, playerRef] = useHlsVideo();
-  const [showMenu, setShowMenu] = useState(true);
   const funcShake = () => {
     playerRef.current.load();
     playerRef.current.play();
@@ -102,6 +70,41 @@ const PlayerMain = () => {
       rotation: `0 ${random()} 0`,
     }));
   };
+
+  const onTimeOut = (val) => {
+    setSettings((prevSettings) => ({
+      ...prevSettings,
+      timeTherapy: 0,
+    }));
+    if (!val) {
+      playSound(alertSound);
+    }
+  };
+
+  const onTimeInterval = (timeLeft) => {
+    setSettings((prevSettings) => ({
+      ...prevSettings,
+      timeTherapy: timeLeft,
+    }));
+  };
+
+  const [startTime, finishTime] = useTimeOut(onTimeOut, onTimeInterval);
+
+  useVrState((currentIsVr) => {
+    setSettings((prevSettings) => ({
+      ...prevSettings,
+      modeVR: currentIsVr,
+    }));
+    if (!currentIsVr) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        timeTherapy: null,
+        rotation: "0 0 0",
+      }));
+      finishTime();
+      console.log("finish");
+    }
+  });
 
   useShake(settings.stateVideo, funcShake);
 
@@ -148,7 +151,7 @@ const PlayerMain = () => {
             setSettings={setSettings}
             attachVideo={attachVideo}
             setShowMenu={setShowMenu}
-            timeOut={timeOut}
+            timeOut={startTime}
           />
         </Row>
       </Container>

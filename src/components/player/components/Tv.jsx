@@ -27,7 +27,7 @@ const Tv = ({ settings, playerRef }) => {
         <video
           id="videoassets"
           controls={true}
-          src="video"
+          src={null}
           preload="metadata"
           ref={playerRef}
           autoPlay={false}

@@ -21,8 +21,8 @@ const Camera = ({ settings }) => {
           animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
           cursor="fuse: true;  fuseTimeout: 1000"
           raycaster="objects: .clickable; far: 100; near: 0.01"
-          position="0 0 -0.5"
-          geometry="primitive: ring; radiusInner: 0.009; radiusOuter: 0.015"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.008; radiusOuter: 0.015"
           material={`color: black; shader: flat`}
         />
       </Entity>

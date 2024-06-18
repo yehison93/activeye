@@ -8,7 +8,7 @@ const Patch = ({ settings }) => {
       <>
         <Entity
           primitive="a-sky"
-          visible={settings.timeTherapy !== 0}
+          visible={settings.timeTherapy != 0}
           color="black"
           radius="10"
           stereo={settings.eye ? "eye: right" : "eye: left"}

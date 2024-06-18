@@ -37,7 +37,7 @@ const Player = ({ settings, playerRef, audioRef }) => {
         <audio
           ref={audioRef}
           autoPlay={true}
-          src="audio"
+          src={null}
           muted={!settings.stateVideo}
           crossOrigin={"anonymous"}
           preload="metadata"
