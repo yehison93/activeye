@@ -71,7 +71,6 @@ const VideoCards = ({
             style={{
               height: "40px",
               backgroundColor: "var(--colorone-degrade)",
-              overflow: "scroll",
             }}
           >
             {items.group.title.split(";").join(", ")}
