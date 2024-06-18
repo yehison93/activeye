@@ -51,8 +51,8 @@ const VideoCards = ({
         modalAction={actionsVideo}
       />
       <Button
-        variant="outline-light"
-        className="button-video-cards"
+        // variant="outline-light"
+        className="button-video-card"
         style={{
           border: "none",
           width: "100%",
@@ -60,16 +60,18 @@ const VideoCards = ({
         onClick={() => showTV()}
       >
         <Card
-          className="text-light m-auto p-0"
+          className=" button-video-card text-light m-auto p-0"
           style={{
-            maxWidth: "150px",
+            width: "140px",
             backgroundColor: "transparent",
             boxShadow: "0 0 10px #000",
           }}
         >
           <Card.Header
             style={{
+              height: "40px",
               backgroundColor: "var(--colorone-degrade)",
+              overflow: "scroll",
             }}
           >
             {items.group.title.split(";").join(", ")}
@@ -78,21 +80,16 @@ const VideoCards = ({
             style={{
               width: "100%",
               height: "100px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              margin: "auto",
+              overflow: "scroll",
             }}
           >
             <Card.Img
+              variant="top"
+              rounded
               src={items.tvg.logo}
               alt={`logo del canal ${items.name}`}
-              style={{
-                opacity: 0.9,
-                width: "100%",
-                height: "auto",
-                margin: "0 auto",
-                padding: 0,
-              }}
+              style={{ height: "100%", margin: "0 auto", padding: 0 }}
               loading="lazy"
             />
           </Card.Body>

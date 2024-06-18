@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { Form, Button, Card, Stack } from "react-bootstrap";
+import { Form, Button, Card, Stack, Alert } from "react-bootstrap";
 import { ChevronDown } from "react-bootstrap-icons";
 import { ChevronUp } from "react-bootstrap-icons";
 import AdditionalConfig from "./AdditionalConfig";
@@ -13,6 +13,8 @@ const random = () => {
 };
 
 const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
+  var sceneEl = document.querySelector("a-scene");
+
   const [addonsButton, setAddonsButton] = useState(false);
   const [viewSettings, setViewSettings] = useState(false);
 
@@ -64,7 +66,8 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
             hidden={
               !selectSettings.eye ||
               !selectSettings.time ||
-              settings.timeTherapy === 0
+              settings.timeTherapy === 0 ||
+              !settings.timeTherapy
             }
             onClick={() => {
               setSettings((prevSettings) => ({
@@ -85,6 +88,13 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
           hidden={viewSettings}
           style={{ backgroundColor: "var(--colortwo-degrade)" }}
         >
+          <Alert variant="info" hidden={!settings.modeVR}>
+            Para volver a configurar <strong>ojo a tratar</strong> y{" "}
+            <strong>tiempo de terapia</strong> debes{" "}
+            <Alert.Link onClick={() => sceneEl.exitVR()}>
+              salir del modo VR
+            </Alert.Link>
+          </Alert>
           <Form>
             <Form.Group hidden={settings.modeVR} className="mb-3">
               <Form.Label>Ojo a tratar</Form.Label>

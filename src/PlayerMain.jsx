@@ -30,8 +30,8 @@ const defaultSettings = {
   positionTV: "1.5",
   stateVideo: false,
   rotation: "0 0 0",
-  videoUrl: "",
-  videoName: "",
+  videoUrl: null,
+  videoName: null,
   modeVR: false,
 };
 
@@ -44,12 +44,23 @@ const PlayerMain = () => {
       setSettings((prevSettings) => ({
         ...prevSettings,
         timeTherapy: null,
+        positionTV: "1.5",
+        rotation: "0 0 0",
         stateVideo: false,
+        videoUrl: null,
+        videoName: null,
         modeVR: false,
       }));
       setHasInitialized(true);
+    } else if (!settings.modeVR) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        timeTherapy: null,
+        rotation: "0 0 0",
+        modeVR: false,
+      }));
     }
-  }, [hasInitialized]);
+  }, [hasInitialized, settings.modeVR]);
 
   useVrState((currentIsVr) => {
     setSettings((prevSettings) => ({
@@ -75,7 +86,7 @@ const PlayerMain = () => {
         timeTherapy: timeLeft,
       }));
 
-      if (timeLeft <= 0) {
+      if (timeLeft <= 0 || !timeLeft) {
         finishTime();
       }
     }, 1000);

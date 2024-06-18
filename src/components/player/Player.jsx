@@ -26,22 +26,25 @@ const Player = ({ settings, playerRef, audioRef }) => {
           multiviewStereo: true;
           precision: medium;
         "
-      fog={`type: exponential; color: ${settings.fog.color};
+      fog={`type: exponential; color: ${
+        settings.stateVideo ? settings.fog.color : "white"
+      };
         density: ${settings.stateVideo ? settings.fog.density : 0.002}`}
       effect={true}
-      // embedded={!settings.stateVideo}
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
       <Entity primitive="a-assets">
         <audio
           ref={audioRef}
           autoPlay={true}
+          src="audio"
           muted={!settings.stateVideo}
           crossOrigin={"anonymous"}
           preload="metadata"
           controls={true}
         />
       </Entity>
+      <Entity light="type: ambient; color: #ffd28e" />
       <Logo settings={settings} />
       <Camera settings={settings} />
       <BackGround settings={settings} />

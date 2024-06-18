@@ -73,9 +73,7 @@ const MenuVideoSelect = ({
                 setViewButtonVideo(false);
               }}
             >
-              {!videoError
-                ? `${settings.videoName} listo`
-                : "ningún canal listo"}
+              {!videoError ? `${settings.videoName}` : "ningún canal listo"}
             </Button>
           </Card.Header>
           <Card.Footer

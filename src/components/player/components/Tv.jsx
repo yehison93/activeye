@@ -2,48 +2,6 @@
 import { getHeight, getRotation, getThetaLength } from "../js/functionsPlayer";
 import { useCallback } from "react";
 import { Entity } from "aframe-react";
-import ReactHlsPlayer from "react-hls-player";
-
-const hlsConfig = {
-  autoStartLoad: true,
-  startPosition: -1,
-  capLevelOnFPSDrop: false,
-  initialLiveManifestSize: 3,
-  maxBufferLength: 30,
-  maxMaxBufferLength: 600,
-  maxBufferHole: 0.5,
-  liveSyncDurationCount: 3,
-  enableWorker: true,
-  enableSoftwareAES: true,
-  fragLoadPolicy: {
-    default: {
-      maxTimeToFirstByteMs: 9000,
-      maxLoadTimeMs: 100000,
-      timeoutRetry: {
-        maxNumRetry: 2,
-        retryDelayMs: 0,
-        maxRetryDelayMs: 0,
-      },
-      errorRetry: {
-        maxNumRetry: 10,
-        retryDelayMs: 1000,
-        maxRetryDelayMs: 15000,
-        backoff: "linear",
-      },
-    },
-  },
-  lowLatencyMode: true,
-  fpsDroppedMonitoringPeriod: 5000,
-  fpsDroppedMonitoringThreshold: 0.2,
-  appendErrorMaxRetry: 3,
-  abrEwmaFastLive: 3.0,
-  abrEwmaSlowLive: 9.0,
-  abrEwmaDefaultEstimate: 500000,
-  abrBandWidthFactor: 0.95,
-  abrBandWidthUpFactor: 0.7,
-  maxStarvationDelay: 4,
-  maxLoadingDelay: 4,
-};
 
 const Tv = ({ settings, playerRef }) => {
   const TvBody = useCallback(() => {
@@ -66,12 +24,12 @@ const Tv = ({ settings, playerRef }) => {
   return (
     <>
       <Entity primitive="a-assets">
-        <ReactHlsPlayer
+        <video
           id="videoassets"
           controls={true}
-          hlsConfig={hlsConfig}
+          src="video"
           preload="metadata"
-          playerRef={playerRef}
+          ref={playerRef}
           autoPlay={false}
           crossOrigin={"anonymous"}
           muted={!settings.stateVideo}

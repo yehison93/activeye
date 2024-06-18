@@ -1,10 +1,8 @@
-
-
 #root{
   --colorone: #072b7c;
-  --colorone-degrade: #6cc6ccb0;
+  --colorone-degrade: #6cc6ccc0;
   --colortwo: #6cc5cc;
-  --colortwo-degrade: #072a7cb0;
+  --colortwo-degrade: #072a7cc0;
 }
 
 .player-main{
@@ -59,9 +57,14 @@
   font-size: 1.3em;
 }
 
-.button-video-cards:hover{
-  background-color: #ffffffbb;
+.button-video-card {
+  background-color: transparent !important
 }
+
+.button-video-card:hover{
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
 
 @keyframes pulse {
   0% {
