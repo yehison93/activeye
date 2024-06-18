@@ -15,6 +15,7 @@ const random = () => {
 const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
   const [addonsButton, setAddonsButton] = useState(false);
   const [viewSettings, setViewSettings] = useState(false);
+
   const [selectSettings, setSelectSettings] = useState({
     eye: false,
     time: false,
@@ -65,10 +66,11 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
               !selectSettings.time ||
               settings.timeTherapy === 0
             }
-            onClickCapture={() => {
-              setSettings({ ...settings, rotation: `0 ${random()} 0` });
-            }}
             onClick={() => {
+              setSettings((prevSettings) => ({
+                ...prevSettings,
+                rotation: `0 ${random()} 0`,
+              }));
               setShowMenu(false);
               timeOut(settings.timeTherapy);
               toggleFullScreen();
@@ -79,11 +81,12 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
           </Button>
         </Card.Header>
         <Card.Body
+          className="pb-5"
           hidden={viewSettings}
           style={{ backgroundColor: "var(--colortwo-degrade)" }}
         >
           <Form>
-            <Form.Group className="mb-3">
+            <Form.Group hidden={settings.modeVR} className="mb-3">
               <Form.Label>Ojo a tratar</Form.Label>
               <Form.Select
                 required
@@ -104,7 +107,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                 <option value={false}>Izquierdo </option>
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group hidden={settings.modeVR} className="mb-3">
               <Form.Label>Duración de la terapia</Form.Label>
               <Form.Select
                 required
@@ -112,7 +115,6 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                   setSettings({
                     ...settings,
                     timeTherapy: e.target.value,
-                    rotation: `0 ${random()} 0`,
                   });
                   setSelectSettings({
                     ...selectSettings,
@@ -121,7 +123,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                 }}
               >
                 <option>Selecciona el tiempo de duración </option>
-                <option value={1}>1 minuto (solo para pruebas)</option>
+                <option value={0.2}>1 minuto (solo para pruebas)</option>
                 {[30, 45, 60, 90, 120].map((time) => (
                   <option key={time} value={time}>
                     {time} minutos

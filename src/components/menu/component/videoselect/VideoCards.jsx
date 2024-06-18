@@ -7,7 +7,6 @@ import { useWakeLock } from "react-screen-wake-lock";
 const VideoCards = ({
   items,
   attachVideo,
-  settings,
   setSettings,
   setViewButtonVideo,
 }) => {
@@ -25,12 +24,12 @@ const VideoCards = ({
   };
 
   const actionsVideo = () => {
-    setSettings({
-      ...settings,
+    setSettings((prevSettings) => ({
+      ...prevSettings,
       stateVideo: true,
       videoUrl: url(),
       videoName: items.name,
-    });
+    }));
     attachVideo(url());
     released === false ? release() : request();
     setViewButtonVideo(true);

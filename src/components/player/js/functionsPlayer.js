@@ -12,31 +12,31 @@ function stereoComponent() {
 const getRotation = (cases) => {
   switch (cases) {
     case "normal":
-      return "145";
+      return "-55";
     case "small":
-      return "155";
+      return "-45";
     case "big":
-      return "135";
+      return "-65";
   }
 };
 const getThetaLength = (cases) => {
   switch (cases) {
     case "normal":
-      return "70";
+      return "110";
     case "small":
-      return "50";
-    case "big":
       return "90";
+    case "big":
+      return "130";
   }
 };
 const getHeight = (cases) => {
   switch (cases) {
     case "normal":
-      return "12.7";
+      return "19.8";
     case "small":
-      return "9";
-    case "big":
       return "16.2";
+    case "big":
+      return "23.4";
   }
 };
 

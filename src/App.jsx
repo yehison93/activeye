@@ -1,5 +1,5 @@
 import "./App.css";
-import PlayerMain from "./components/menu/PlayerMain";
+import PlayerMain from "./PlayerMain";
 
 function App() {
   return <PlayerMain />;

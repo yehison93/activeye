@@ -10,10 +10,10 @@ const AdditionalConfig = ({ settings, setSettings }) => {
           <Form.Label>Tamaño del TV</Form.Label>
           <Form.Select
             onChange={(e) =>
-              setSettings({
-                ...settings,
+              setSettings((prevSettings) => ({
+                ...prevSettings,
                 sizeTV: e.target.value,
-              })
+              }))
             }
           >
             <option>Selecciona el tamaño del TV </option>

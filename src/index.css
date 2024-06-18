@@ -5,3 +5,11 @@ html, body{
   user-select: none;
   background-color: black;
 }
+
+html:-webkit-full-screen{
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}

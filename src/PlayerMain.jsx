@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { Button, Container, Row } from "react-bootstrap";
-import Player from "../player/Player.jsx";
-import logo from "../../assets/logoambliopa.png";
-import FondoDefault from "../../assets/backgroundScenes/Sala-Moderna.jpg";
-import useHlsVideo from "../player/customHooks/useHlsVideo";
-import MenuConfig from "./component/MenuConfig.jsx";
-import usePlaySound from "../player/customHooks/usePlaySound.jsx";
-import alertSound from "../../assets/alertFinishTherapy.mp3";
+
+import useHlsVideo from "./components/player/customHooks/useHlsVideo.jsx";
+import useLocalStorage from "./components/player/customHooks/useLocalStorage.jsx";
+import useShake from "./components/menu/customHooks/useShake.jsx";
+import usePlaySound from "./components/player/customHooks/usePlaySound.jsx";
+
+import Player from "./components/player/Player.jsx";
+import MenuConfig from "./components/menu/component/MenuConfig.jsx";
+
+import logo from "./assets/logoambliopa.png";
+import FondoDefault from "./assets/backgroundScenes/Sala-Moderna.jpg";
+import alertSound from "./assets/alertFinishTherapy.mp3";
+
 import { List, Eyeglasses } from "react-bootstrap-icons";
-import useLocalStorage from "../player/customHooks/useLocalStorage.jsx";
-import { useEffect } from "react";
-import useShake from "./customHooks/useShake.jsx";
+import useVrState from "./components/player/customHooks/useVrState.jsx";
 
 const random = () => {
   return Math.random() * 0.9;
@@ -27,29 +32,64 @@ const defaultSettings = {
   rotation: "0 0 0",
   videoUrl: "",
   videoName: "",
+  modeVR: false,
 };
 
 const PlayerMain = () => {
   const [settings, setSettings] = useLocalStorage(defaultSettings, "settings");
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
-    setSettings({ ...settings, timeTherapy: null, stateVideo: false });
-  }, []);
+    if (!hasInitialized) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        timeTherapy: null,
+        stateVideo: false,
+        modeVR: false,
+      }));
+      setHasInitialized(true);
+    }
+  }, [hasInitialized]);
+
+  useVrState((currentIsVr) => {
+    setSettings((prevSettings) => ({
+      ...prevSettings,
+      modeVR: currentIsVr,
+    }));
+  });
 
   const [audioRef, playSound] = usePlaySound();
 
-  const timeOut = (time) => {
-    const timeOutId = setTimeout(() => {
+  const timeOut = (initialTime) => {
+    let timeLeft = initialTime * 60;
+
+    const finishTime = () => {
+      clearInterval(intervalId);
       playSound(alertSound);
-      setSettings({ ...settings, timeTherapy: 0 });
-    }, time * 60000);
-    return () => clearTimeout(timeOutId);
+    };
+
+    const intervalId = setInterval(() => {
+      timeLeft -= 1;
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        timeTherapy: timeLeft,
+      }));
+
+      if (timeLeft <= 0) {
+        finishTime();
+      }
+    }, 1000);
   };
+
   const [attachVideo, error, playerRef] = useHlsVideo();
   const [showMenu, setShowMenu] = useState(true);
   const funcShake = () => {
     playerRef.current.load();
     playerRef.current.play();
+    setSettings((prevSettings) => ({
+      ...prevSettings,
+      rotation: `0 ${random()} 0`,
+    }));
   };
 
   useShake(settings.stateVideo, funcShake);
@@ -60,8 +100,8 @@ const PlayerMain = () => {
         style={{
           position: "absolute",
           top: 0,
-          left: 0,
-
+          right: settings.eye ? "0" : null,
+          left: !settings.eye ? "0" : null,
           zIndex: 5,
         }}
         variant="outline-link fs-1 text-light"
@@ -73,16 +113,17 @@ const PlayerMain = () => {
         style={{
           position: "absolute",
           top: 0,
-          right: 0,
+          right: !settings.eye ? "0" : null,
+          left: settings.eye ? "0" : null,
           zIndex: 5,
         }}
-        hidden={!showMenu}
+        hidden={settings.modeVR}
         variant="outline-link fs-1 text-light"
         onClick={() =>
-          setSettings({
-            ...settings,
+          setSettings((prevSettings) => ({
+            ...prevSettings,
             rotation: `0 ${random()} 0`,
-          })
+          }))
         }
       >
         <Eyeglasses />

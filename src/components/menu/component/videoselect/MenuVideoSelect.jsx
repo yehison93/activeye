@@ -66,7 +66,6 @@ const MenuVideoSelect = ({
                 fontSize: "1rem",
                 animation: !videoError ? "pulse 1s infinite" : "none",
               }}
-              disabled={videoError}
               hidden={!viewButtonVideo || videoError}
               onClick={() => {
                 setViewConfig(true);
