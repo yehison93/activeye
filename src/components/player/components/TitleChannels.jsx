@@ -16,9 +16,6 @@ const TitleChannels = ({ title, position }) => {
             font="kelsonsans"
           />
         )}
-        {/* <Entity
-          text={`value: ${title}; color: #fff; align: center; width: 40;`}
-        /> */}
       </>
     );
   }, [title]);
