@@ -33,9 +33,9 @@ const AdditionalConfig = ({ settings, setSettings }) => {
             }
           >
             <option>Selecciona la altura del TV </option>
-            <option value={"1.5"}>Sentado normal (normal)</option>
-            <option value={"5"}>Reclinado (alto)</option>
-            <option value={"10"}>Acostado (muy alto)</option>
+            <option value={"2"}>Sentado normal (normal)</option>
+            <option value={"7"}>Reclinado (alto)</option>
+            <option value={"15"}>Acostado (muy alto)</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">

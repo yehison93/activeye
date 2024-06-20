@@ -4,7 +4,7 @@ import { Button, Container, Row } from "react-bootstrap";
 
 import useHlsVideo from "./components/player/customHooks/useHlsVideo.jsx";
 import useLocalStorage from "./components/player/customHooks/useLocalStorage.jsx";
-import useShake from "./components/menu/customHooks/useShake.jsx";
+// import useShake from "./components/menu/customHooks/useShake.jsx";
 import usePlaySound from "./components/player/customHooks/usePlaySound.jsx";
 import useM3uToJson from "./components/menu/customHooks/UseM3uToJson.jsx";
 import { m3uFile } from "./assets/iptvList.js";
@@ -32,7 +32,7 @@ const defaultSettings = {
   backGround: FondoDefault,
   fog: { density: 0, color: "white" }, //la densidad se gradúa desde 0.001 a 0.005 se recomienda de 0.001 a 0.003
   sizeTV: "normal",
-  positionTV: "1.5",
+  positionTV: "2",
   stateVideo: false,
   rotation: "0 0 0",
   videoUrl: null,
@@ -95,14 +95,12 @@ const PlayerMain = () => {
     }
   );
 
-  const funcShake = () => {
-    playerRef.current.load();
-    playerRef.current.play();
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      rotation: `0 ${random()} 0`,
-    }));
-  };
+  //funcion para reanudar el video agitando el dspositivo
+
+  // const funcShake = () => {
+  //   attachVideo(settings.stateVideo)
+  // };
+  //  useShake(settings.stateVideo, funcShake);
 
   const onTimeOut = (val) => {
     setSettings((prevSettings) => ({
@@ -138,16 +136,14 @@ const PlayerMain = () => {
     }
   });
 
-  useShake(settings.stateVideo, funcShake);
-
   return (
     <div className="player-main">
       <Button
         style={{
           position: "absolute",
           top: 0,
-          right: settings.eye ? "0" : null,
-          left: !settings.eye ? "0" : null,
+          right: !settings.eye ? "0" : null,
+          left: settings.eye ? "0" : null,
           zIndex: 5,
         }}
         variant="outline-link fs-1 text-light"
@@ -159,8 +155,8 @@ const PlayerMain = () => {
         style={{
           position: "absolute",
           top: 0,
-          right: !settings.eye ? "0" : null,
-          left: settings.eye ? "0" : null,
+          right: settings.eye ? "0" : null,
+          left: !settings.eye ? "0" : null,
           zIndex: 5,
         }}
         hidden={settings.modeVR}

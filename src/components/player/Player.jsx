@@ -1,12 +1,20 @@
 /* eslint-disable react/prop-types */
+
 import "aframe";
 import { Scene, Entity } from "aframe-react";
+import { useState, useEffect } from "react";
 import Camera from "./components/Camera";
 import BackGround from "./components/BackGround";
 import Patch from "./components/Patch";
 import Logo from "./components/Logo";
 import Tv from "./components/Tv";
 import Controls from "./components/Controls";
+import chevronIcon from "../../assets/IconsControls/chevron-up.svg";
+import dashIcon from "../../assets/IconsControls/dash-lg.svg";
+import plusIcon from "../../assets/IconsControls/plus-lg.svg";
+import pauseIcon from "../../assets/IconsControls/pause-fill.svg";
+import playIcon from "../../assets/IconsControls/play-fill.svg";
+import { getHeight, getRotation, getThetaLength } from "./js/functionsPlayer";
 
 const Player = ({
   settings,
@@ -15,6 +23,15 @@ const Player = ({
   attachVideo,
   changeChannels,
 }) => {
+  const [param, setParam] = useState({});
+  useEffect(() => {
+    setParam((prevParam) => ({
+      ...prevParam,
+      height: getHeight(settings.sizeTV),
+      rotation: getRotation(settings.sizeTV),
+      thetaLength: getThetaLength(settings.sizeTV),
+    }));
+  }, [settings.sizeTV]);
   return (
     <Scene
       id="MainScene"
@@ -41,6 +58,7 @@ const Player = ({
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
     >
       <Entity primitive="a-assets">
+        <img id="logo" src={settings.logo} />
         <audio
           ref={audioRef}
           autoPlay={true}
@@ -50,19 +68,42 @@ const Player = ({
           preload="metadata"
           controls={true}
         />
+        <video
+          id="videoassets"
+          controls={true}
+          src={null}
+          preload="metadata"
+          ref={playerRef}
+          autoPlay={false}
+          crossOrigin={"anonymous"}
+          muted={!settings.stateVideo}
+          width={16}
+          height={9}
+          playsInline={true}
+        />
+        <img id="sky" src={settings.backGround} />
+        <img id="playIcon" src={playIcon} width={100} height={100} />
+        <img id="pauseIcon" src={pauseIcon} width={100} height={100} />
+        <img id="plusIcon" src={plusIcon} width={100} height={100} />
+        <img id="dashIcon" src={dashIcon} width={100} height={100} />
+        <img id="chevronIcon" src={chevronIcon} width={100} height={100} />
       </Entity>
       <Entity light="type: ambient; color: #ffd28e" />
       <Logo settings={settings} />
       <Camera settings={settings} />
       <BackGround settings={settings} />
       <Patch settings={settings} />
-      <Tv settings={settings} playerRef={playerRef} />
-      <Controls
-        playerRef={playerRef}
-        attachVideo={attachVideo}
-        changeChannels={changeChannels}
-        settings={settings}
-      />
+      <Entity position={`0 ${settings.positionTV} 0`} rotation="15 0 0">
+        <Tv settings={settings} playerRef={playerRef} param={param} />
+        <Controls
+          playerRef={playerRef}
+          attachVideo={attachVideo}
+          changeChannels={changeChannels}
+          settings={settings}
+          param={param}
+        />
+      </Entity>
+      
     </Scene>
   );
 };

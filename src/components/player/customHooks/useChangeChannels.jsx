@@ -4,9 +4,9 @@ const useChangeChannels = (channelCurrent, listChannels, actions) => {
       item.name.includes(channelCurrent)
     );
     if (channelIndex !== -1) {
-      if (typeChannels) {
+      if (typeChannels === "next") {
         actions(listChannels[channelIndex + 1]);
-      } else {
+      } else if (typeChannels === "prev") {
         actions(listChannels[channelIndex - 1]);
       }
     }

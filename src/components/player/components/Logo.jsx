@@ -23,9 +23,6 @@ const Logo = ({ settings }) => {
 
   return (
     <>
-      <Entity primitive="a-assets">
-        <img id="logo" src={settings.logo} />
-      </Entity>
       <LogoBody />
     </>
   );

@@ -6,7 +6,7 @@ import { useCallback } from "react";
 stereoComponent();
 
 const Camera = ({ settings }) => {
-  const Component = useCallback(() => {
+  const CameraBody = useCallback(() => {
     return (
       <Entity
         primitive="a-camera"
@@ -32,7 +32,11 @@ const Camera = ({ settings }) => {
     );
   }, [settings.eye, settings.rotation]);
 
-  return <Component />;
+  return (
+    <>
+      <CameraBody />
+    </>
+  );
 };
 
 export default Camera;

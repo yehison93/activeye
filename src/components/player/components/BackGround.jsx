@@ -6,15 +6,20 @@ const BackGround = ({ settings }) => {
   const BackGrounBody = useCallback(() => {
     return (
       <>
-        <Entity primitive="a-assets">
-          <img id="sky" src={settings.backGround} />
-        </Entity>
-
-        <Entity primitive="a-sky" src="#sky" rotation="0 300 0" />
+        <Entity
+          visible={settings.backGround}
+          primitive="a-sky"
+          src="#sky"
+          rotation="0 300 0"
+        />
       </>
     );
   }, [settings.backGround]);
-  return <BackGrounBody />;
+  return (
+    <>
+      <BackGrounBody />
+    </>
+  );
 };
 
 export default BackGround;
