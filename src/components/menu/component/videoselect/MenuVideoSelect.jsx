@@ -10,10 +10,7 @@ import {
   Stack,
 } from "react-bootstrap";
 import VideoCards from "./VideoCards";
-import useM3uToJson from "../../customHooks/UseM3uToJson";
-import { m3uFile } from "../../../../assets/iptvList";
 import { useState } from "react";
-import useForm from "../../customHooks/UseForm";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { v4 as uuidv4 } from "uuid";
 
@@ -23,12 +20,9 @@ const MenuVideoSelect = ({
   settings,
   attachVideo,
   setSettings,
+  channels,
+  onChangeChannels,
 }) => {
-  const [parsed] = useM3uToJson({ m3uFile });
-  const [channels, onChangeChannels] = useForm({
-    parsed,
-    initialSearch: "kids",
-  });
   const [viewVideoSelect, setViewVideoSelect] = useState(false);
   const [viewButtonVideo, setViewButtonVideo] = useState(false);
 

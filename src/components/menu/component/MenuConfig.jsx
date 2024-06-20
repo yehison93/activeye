@@ -11,6 +11,8 @@ const MenuConfig = ({
   attachVideo,
   setShowMenu,
   timeOut,
+  channels,
+  onChangeChannels,
 }) => {
   const [viewConfig, setViewConfig] = useState(false);
   return (
@@ -22,6 +24,8 @@ const MenuConfig = ({
           settings={settings}
           attachVideo={attachVideo}
           setSettings={setSettings}
+          channels={channels}
+          onChangeChannels={onChangeChannels}
         />
       </Row>
       <Row hidden={!viewConfig}>

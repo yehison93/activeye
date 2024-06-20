@@ -6,8 +6,15 @@ import BackGround from "./components/BackGround";
 import Patch from "./components/Patch";
 import Logo from "./components/Logo";
 import Tv from "./components/Tv";
+import Controls from "./components/Controls";
 
-const Player = ({ settings, playerRef, audioRef }) => {
+const Player = ({
+  settings,
+  playerRef,
+  audioRef,
+  attachVideo,
+  changeChannels,
+}) => {
   return (
     <Scene
       id="MainScene"
@@ -50,6 +57,12 @@ const Player = ({ settings, playerRef, audioRef }) => {
       <BackGround settings={settings} />
       <Patch settings={settings} />
       <Tv settings={settings} playerRef={playerRef} />
+      <Controls
+        playerRef={playerRef}
+        attachVideo={attachVideo}
+        changeChannels={changeChannels}
+        settings={settings}
+      />
     </Scene>
   );
 };

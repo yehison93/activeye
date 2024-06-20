@@ -82,7 +82,6 @@ const useHlsVideo = () => {
 
     playerRef.current.onerror = playFallbackVideo;
   };
-
   return [attachVideo, error, playerRef];
 };
 
