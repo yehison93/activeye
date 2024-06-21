@@ -17,7 +17,7 @@ const Controls = ({
         width="25"
         height="10"
         opacity="0"
-        position={`0 ${-1 * (param.height / 2 + 3)} -21`}
+        position={`0 ${-1 * (param.height / 2 + 4)} -21`}
         className="clickable"
       >
         <Entity

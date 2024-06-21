@@ -16,7 +16,7 @@ const MenuConfig = ({
 }) => {
   const [viewConfig, setViewConfig] = useState(false);
   return (
-    <Container>
+    <Container className="mb-5">
       <Row>
         <MenuVideoSelect
           videoError={videoError}

@@ -20,6 +20,7 @@ import FondoDefault from "./assets/backgroundScenes/Sala-Moderna.jpg";
 import alertSound from "./assets/alertFinishTherapy.mp3";
 
 import { List, Eyeglasses } from "react-bootstrap-icons";
+import LoadPage from "./components/menu/component/LoadPage.jsx";
 
 const random = () => {
   return Math.random() * 0.9;
@@ -123,58 +124,57 @@ const PlayerMain = () => {
   const [startTime, finishTime] = useTimeOut(onTimeOut, onTimeInterval);
 
   return (
-    <div className="player-main">
-      {settings.loadedVR ? (
-        <>
-          <Button
-            style={{
-              position: "absolute",
-              top: 0,
-              right: !settings.eye ? "0" : null,
-              left: settings.eye ? "0" : null,
-              zIndex: 5,
-            }}
-            variant="outline-link fs-1 text-light"
-            onClick={() => setShowMenu(!showMenu)}
-          >
-            <List />
-          </Button>
-          <Button
-            style={{
-              position: "absolute",
-              top: 0,
-              right: settings.eye ? "0" : null,
-              left: !settings.eye ? "0" : null,
-              zIndex: 5,
-            }}
-            hidden={settings.modeVR}
-            variant="outline-link fs-1 text-light"
-            onClick={() =>
-              setSettings((prevSettings) => ({
-                ...prevSettings,
-                rotation: `0 ${random()} 0`,
-              }))
-            }
-          >
-            <Eyeglasses />
-          </Button>
+    <>
+      <div hidden={!settings.loadedVR} className="player-main">
+        <Button
+          style={{
+            position: "absolute",
+            top: 0,
+            right: !settings.eye ? "0" : null,
+            left: settings.eye ? "0" : null,
+            zIndex: 5,
+          }}
+          variant="outline-link fs-1 text-light"
+          onClick={() => setShowMenu(!showMenu)}
+        >
+          <List />
+        </Button>
+        <Button
+          style={{
+            position: "absolute",
+            top: 0,
+            right: settings.eye ? "0" : null,
+            left: !settings.eye ? "0" : null,
+            zIndex: 5,
+          }}
+          hidden={settings.modeVR}
+          variant="outline-link fs-1 text-light"
+          onClick={() =>
+            setSettings((prevSettings) => ({
+              ...prevSettings,
+              rotation: `0 ${random()} 0`,
+            }))
+          }
+        >
+          <Eyeglasses />
+        </Button>
 
-          <Container className="player-menu">
-            <Row hidden={!showMenu}>
-              <MenuConfig
-                videoError={error}
-                settings={settings}
-                setSettings={setSettings}
-                attachVideo={attachVideo}
-                setShowMenu={setShowMenu}
-                timeOut={startTime}
-                channels={channels}
-                onChangeChannels={onChangeChannels}
-              />
-            </Row>
-          </Container>
-        </>
-      ) : null}
+        <Container className="player-menu">
+          <Row hidden={!showMenu}>
+            <MenuConfig
+              videoError={error}
+              settings={settings}
+              setSettings={setSettings}
+              attachVideo={attachVideo}
+              setShowMenu={setShowMenu}
+              timeOut={startTime}
+              channels={channels}
+              onChangeChannels={onChangeChannels}
+            />
+          </Row>
+        </Container>
+      </div>
+      {!settings.loadedVR ? <LoadPage settings={settings} /> : null}
 
       <Player
         settings={settings}
@@ -185,7 +185,7 @@ const PlayerMain = () => {
         setSettings={setSettings}
         finishTime={finishTime}
       />
-    </div>
+    </>
   );
 };
 
