@@ -18,10 +18,12 @@ import { getHeight, getRotation, getThetaLength } from "./js/functionsPlayer";
 
 const Player = ({
   settings,
+  setSettings,
   playerRef,
   audioRef,
   attachVideo,
   changeChannels,
+  finishTime,
 }) => {
   const [param, setParam] = useState({});
   useEffect(() => {
@@ -43,7 +45,7 @@ const Player = ({
           allowButtonText: Permitir;
           deviceMotionMessage: Esta es una app de VR que requiere de tu permiso para acceder a los sensores de movimiento de tu dispositivo, deberías aceptar para que tengas la mejor experiencia posible.;
         "
-      loading-screen="dotsColor: #072b7c; backgroundColor: #6cc6ccb0"
+      loading-screen="dotsColor: darkblue; backgroundColor: aqua"
       renderer="
           highRefreshRate: true;
           foveationLevel: 1;
@@ -56,8 +58,36 @@ const Player = ({
         density: ${settings.stateVideo ? settings.fog.density : 0.002}`}
       effect={true}
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
+      events={{
+        "enter-vr": () => {
+          setSettings((prevSettings) => ({
+            ...prevSettings,
+            modeVR: true,
+          }));
+        },
+        "exit-vr": () => {
+          setSettings((prevSettings) => ({
+            ...prevSettings,
+            timeTherapy: null,
+            rotation: "0 0 0",
+            modeVR: false,
+          }));
+          finishTime();
+        },
+      }}
     >
-      <Entity primitive="a-assets">
+      <Entity
+        events={{
+          loaded: () => {
+            setSettings((prevSettings) => ({
+              ...prevSettings,
+              loadedVR: true,
+            }));
+          },
+        }}
+        primitive="a-assets"
+        timeout="5000"
+      >
         <img id="logo" src={settings.logo} />
         <audio
           ref={audioRef}
@@ -95,15 +125,16 @@ const Player = ({
       <Patch settings={settings} />
       <Entity position={`0 ${settings.positionTV} 0`} rotation="15 0 0">
         <Tv settings={settings} playerRef={playerRef} param={param} />
-        <Controls
-          playerRef={playerRef}
-          attachVideo={attachVideo}
-          changeChannels={changeChannels}
-          settings={settings}
-          param={param}
-        />
+        {settings.modeVR ? (
+          <Controls
+            playerRef={playerRef}
+            attachVideo={attachVideo}
+            changeChannels={changeChannels}
+            settings={settings}
+            param={param}
+          />
+        ) : null}
       </Entity>
-      
     </Scene>
   );
 };

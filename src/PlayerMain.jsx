@@ -9,6 +9,8 @@ import usePlaySound from "./components/player/customHooks/usePlaySound.jsx";
 import useM3uToJson from "./components/menu/customHooks/UseM3uToJson.jsx";
 import { m3uFile } from "./assets/iptvList.js";
 import useForm from "./components/menu/customHooks/UseForm.jsx";
+import useTimeOut from "./components/menu/customHooks/useTimeOut.jsx";
+import useChangeChannels from "./components/player/customHooks/useChangeChannels.jsx";
 
 import Player from "./components/player/Player.jsx";
 import MenuConfig from "./components/menu/component/MenuConfig.jsx";
@@ -18,9 +20,6 @@ import FondoDefault from "./assets/backgroundScenes/Sala-Moderna.jpg";
 import alertSound from "./assets/alertFinishTherapy.mp3";
 
 import { List, Eyeglasses } from "react-bootstrap-icons";
-import useVrState from "./components/player/customHooks/useVrState.jsx";
-import useTimeOut from "./components/menu/customHooks/useTimeOut.jsx";
-import useChangeChannels from "./components/player/customHooks/useChangeChannels.jsx";
 
 const random = () => {
   return Math.random() * 0.9;
@@ -38,6 +37,7 @@ const defaultSettings = {
   videoUrl: null,
   videoName: null,
   modeVR: false,
+  loadedVR: false,
 };
 
 const url = (item) => {
@@ -70,6 +70,7 @@ const PlayerMain = () => {
         videoUrl: null,
         videoName: null,
         modeVR: false,
+        loadedVR: false,
       }));
       setHasInitialized(true);
     }
@@ -121,76 +122,68 @@ const PlayerMain = () => {
 
   const [startTime, finishTime] = useTimeOut(onTimeOut, onTimeInterval);
 
-  useVrState((currentIsVr) => {
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      modeVR: currentIsVr,
-    }));
-    if (!currentIsVr) {
-      setSettings((prevSettings) => ({
-        ...prevSettings,
-        timeTherapy: null,
-        rotation: "0 0 0",
-      }));
-      finishTime();
-    }
-  });
-
   return (
     <div className="player-main">
-      <Button
-        style={{
-          position: "absolute",
-          top: 0,
-          right: !settings.eye ? "0" : null,
-          left: settings.eye ? "0" : null,
-          zIndex: 5,
-        }}
-        variant="outline-link fs-1 text-light"
-        onClick={() => setShowMenu(!showMenu)}
-      >
-        <List />
-      </Button>
-      <Button
-        style={{
-          position: "absolute",
-          top: 0,
-          right: settings.eye ? "0" : null,
-          left: !settings.eye ? "0" : null,
-          zIndex: 5,
-        }}
-        hidden={settings.modeVR}
-        variant="outline-link fs-1 text-light"
-        onClick={() =>
-          setSettings((prevSettings) => ({
-            ...prevSettings,
-            rotation: `0 ${random()} 0`,
-          }))
-        }
-      >
-        <Eyeglasses />
-      </Button>
+      {settings.loadedVR ? (
+        <>
+          <Button
+            style={{
+              position: "absolute",
+              top: 0,
+              right: !settings.eye ? "0" : null,
+              left: settings.eye ? "0" : null,
+              zIndex: 5,
+            }}
+            variant="outline-link fs-1 text-light"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            <List />
+          </Button>
+          <Button
+            style={{
+              position: "absolute",
+              top: 0,
+              right: settings.eye ? "0" : null,
+              left: !settings.eye ? "0" : null,
+              zIndex: 5,
+            }}
+            hidden={settings.modeVR}
+            variant="outline-link fs-1 text-light"
+            onClick={() =>
+              setSettings((prevSettings) => ({
+                ...prevSettings,
+                rotation: `0 ${random()} 0`,
+              }))
+            }
+          >
+            <Eyeglasses />
+          </Button>
 
-      <Container className="player-menu">
-        <Row hidden={!showMenu}>
-          <MenuConfig
-            videoError={error}
-            settings={settings}
-            setSettings={setSettings}
-            attachVideo={attachVideo}
-            setShowMenu={setShowMenu}
-            timeOut={startTime}
-            channels={channels}
-            onChangeChannels={onChangeChannels}
-          />
-        </Row>
-      </Container>
+          <Container className="player-menu">
+            <Row hidden={!showMenu}>
+              <MenuConfig
+                videoError={error}
+                settings={settings}
+                setSettings={setSettings}
+                attachVideo={attachVideo}
+                setShowMenu={setShowMenu}
+                timeOut={startTime}
+                channels={channels}
+                onChangeChannels={onChangeChannels}
+              />
+            </Row>
+          </Container>
+        </>
+      ) : null}
+
       <Player
         settings={settings}
         playerRef={playerRef}
         audioRef={audioRef}
         attachVideo={attachVideo}
         changeChannels={changeChannels}
+        setSettings={setSettings}
+        finishTime={finishTime}
       />
     </div>
   );

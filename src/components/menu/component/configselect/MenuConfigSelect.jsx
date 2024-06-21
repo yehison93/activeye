@@ -133,7 +133,7 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                 }}
               >
                 <option>Selecciona el tiempo de duración </option>
-                <option value={0.2}>1 minuto (solo para pruebas)</option>
+                <option value={1}>1 minuto (solo para pruebas)</option>
                 {[30, 45, 60, 90, 120].map((time) => (
                   <option key={time} value={time}>
                     {time} minutos
