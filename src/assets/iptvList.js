@@ -407,6 +407,10 @@ https://r.mjh.nz/PlutoTV/5fcea93ffcf94500071c4b2f-alt.m3u8
 #EXTINF:-1 channel-id="pluto-5dd6de52b9914200091f047a" tvg-id="5dd6de52b9914200091f047a" tvg-logo="https://images.pluto.tv/channels/5dd6de52b9914200091f047a/colorLogoPNG.png" tvg-chno="1370" group-title="Teen" , Pluto TV Teen
 https://r.mjh.nz/PlutoTV/5dd6de52b9914200091f047a-alt.m3u8
 
+#EXTINF:-1 tvg-id="DiosTeVeKids.hn" tvg-logo="https://i.imgur.com/GnZicVH.png" group-title="Kids;Religious",Dios Te Ve Kids
+https://s.emisoras.tv:8081/diostevekids/index.m3u8
+
+
 #EXTINF:-1 channel-id="pluto-6495c6ad115d060008bf6b52" tvg-id="6495c6ad115d060008bf6b52" tvg-logo="https://images.pluto.tv/channels/6495c6ad115d060008bf6b52/colorLogoPNG.png" tvg-chno="1400" group-title="Kids" , PAW Patrol Patrulla de Cachorros
 https://r.mjh.nz/PlutoTV/6495c6ad115d060008bf6b52-alt.m3u8
 
@@ -683,14 +687,14 @@ https://r.mjh.nz/PlutoTV/5f32f397795b750007706448-alt.m3u8
 #EXTINF:-1 channel-id="pluto-5d8d08395f39465da6fb3ec4" tvg-id="5d8d08395f39465da6fb3ec4" tvg-logo="https://images.pluto.tv/channels/5d8d08395f39465da6fb3ec4/colorLogoPNG.png" tvg-chno="3780" group-title="Kids" , Nickelodeon en español
 https://r.mjh.nz/PlutoTV/5d8d08395f39465da6fb3ec4-alt.m3u8
 
+
+
 #EXTINF:-1 tvg-id="13Kids.cl" tvg-logo="https://i.imgur.com/8WJUbSD.png" group-title="Kids",13 Kids
 https://origin.dpsgo.com/ssai/event/LhHrVtyeQkKZ-Ye_xEU75g/master.m3u8
 #EXTINF:-1 tvg-id="Clan.es" tvg-logo="https://i.imgur.com/03jFV68.png" group-title="Kids",Clan
 https://rtvelivestream.akamaized.net/rtvesec/clan/clan_main_dvr.m3u8
 #EXTINF:-1 tvg-id="ClanInternacional.es" tvg-logo="https://i.imgur.com/03jFV68.png" group-title="Kids",Clan Internacional
 https://rtvelivestream.akamaized.net/rtvesec/int/clan_int_main.m3u8
-#EXTINF:-1 tvg-id="DiosTeVeKids.hn" tvg-logo="https://i.imgur.com/GnZicVH.png" group-title="Kids;Religious",Dios Te Ve Kids
-https://s.emisoras.tv:8081/diostevekids/index.m3u8
 #EXTINF:-1 tvg-id="Kidz.es" tvg-logo="https://i.imgur.com/iBgsCOV.png" group-title="Kids",Kidz
 https://fast-channels.atresmedia.com/648c271d2bfab0e4177a0d61/648c271d2bfab0e4177a0d61.m3u8
 #EXTINF:-1 tvg-id="LatinoKidsTV.uy" tvg-logo="https://i.imgur.com/VEk5aJ6.png" group-title="Animation",Latino Kids TV
@@ -703,8 +707,7 @@ https://magicstream.ddns.net/magicstream/stream.m3u8
 https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5ddd7c348520b40009c347e2/master.m3u8?advertisingId=&appName=web&appVersion=5.14.0-0f5ca04c21649b8c8aad4e56266a23b96d73b83a&app_name=web&clientDeviceType=0&clientID=6fbead95-26b1-415d-998f-1bdef62d10be&clientModelNumber=na&deviceDNT=false&deviceId=6fbead95-26b1-415d-998f-1bdef62d10be&deviceLat=19.4358&deviceLon=-99.1441&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=88.0.4324.150&marketingRegion=VE&serverSideAds=false&sessionID=b8e5a857-714a-11eb-b532-0242ac110002&sid=b8e5a857-714a-11eb-b532-0242ac110002&userId=
 #EXTINF:-1 tvg-id="NickJrenEspanol.us" tvg-logo="https://i.imgur.com/OmmWgcr.png" group-title="Kids",Nick Jr. en Espanol
 https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5d8d08395f39465da6fb3ec4/master.m3u8?advertisingId=&appName=web&appStoreUrl=&appVersion=DNT&app_name=&architecture=&buildVersion=&deviceDNT=0&deviceId=5d8d08395f39465da6fb3ec4&deviceLat=&deviceLon=&deviceMake=web&deviceModel=web&deviceType=web&deviceVersion=DNT&includeExtendedEvents=false&marketingRegion=US&serverSideAds=false&sid=997&terminate=false&userId=
-#EXTINF:-1 tvg-id="PenielKY.gt" tvg-logo="https://i.imgur.com/YtPRKmS.png" group-title="Religious",Peniel K&Y
-https://s.emisoras.tv:8081/penielkids/index.m3u8
+
 #EXTINF:-1 tvg-id="PlanetaJuniorTV.es" tvg-logo="https://i.imgur.com/EaYYKb7.png" group-title="Kids",Planeta Junior TV
 https://deaplaneta-planetakidz-1-es.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="PlanetaTVKids.cl" tvg-logo="https://i.imgur.com/v5zkh4T.png" group-title="Kids",PlanetaTV Kids
@@ -805,4 +808,7 @@ http://190.122.96.187:8888/http/006
 #EXTINF:-1 tvg-id="VIVOplay.ve" tvg-logo="https://i.imgur.com/o1CxGRy.png" group-title="General",VIVOplay
 https://linear-260.frequency.stream/mt/studio/260/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-id="VPItv.ve" tvg-logo="https://i.imgur.com/X5hyKU8.png" group-title="News",VPItv
-https://ott3.streann.com/loadbalancer/services/public/channels/5d23d5882cdce61dae029fd8/playlist.m3u8`;
+https://ott3.streann.com/loadbalancer/services/public/channels/5d23d5882cdce61dae029fd8/playlist.m3u8
+#EXTINF:-1 tvg-id="PenielKY.gt" tvg-logo="https://i.imgur.com/YtPRKmS.png" group-title="Religious",Peniel K&Y
+https://s.emisoras.tv:8081/penielkids/index.m3u8
+`;
