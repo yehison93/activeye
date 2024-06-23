@@ -86,7 +86,7 @@ const Player = ({
           },
         }}
         primitive="a-assets"
-        timeout="5000"
+        timeout="10000"
       >
         <img id="logo" src={settings.logo} />
         <audio
@@ -102,22 +102,23 @@ const Player = ({
           id="videoassets"
           controls={true}
           src={null}
-          preload="metadata"
+          preload="auto"
           ref={playerRef}
-          autoPlay={false}
+          autoPlay={true}
           crossOrigin={"anonymous"}
           muted={!settings.stateVideo}
           width={16}
           height={9}
           playsInline={true}
         />
-        <img id="sky" src={settings.backGround} />
+        <img id="sky" src={settings.backGround} loading="eager" />
         <img id="playIcon" src={playIcon} width={100} height={100} />
         <img id="pauseIcon" src={pauseIcon} width={100} height={100} />
         <img id="plusIcon" src={plusIcon} width={100} height={100} />
         <img id="dashIcon" src={dashIcon} width={100} height={100} />
         <img id="chevronIcon" src={chevronIcon} width={100} height={100} />
       </Entity>
+
       <Entity light="type: ambient; color: #ffd28e" />
       <Logo settings={settings} />
       <Camera settings={settings} />
