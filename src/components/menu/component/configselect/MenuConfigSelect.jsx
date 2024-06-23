@@ -8,20 +8,12 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { HeadsetVr } from "react-bootstrap-icons";
 import useFullScreen from "../../../player/customHooks/useFullScreen";
 
-const random = () => {
-  return Math.random() * 0.9;
-};
-
 const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
   var sceneEl = document.querySelector("a-scene");
 
   const [addonsButton, setAddonsButton] = useState(false);
   const [viewSettings, setViewSettings] = useState(false);
 
-  const [selectSettings, setSelectSettings] = useState({
-    eye: false,
-    time: false,
-  });
   const toggleFullScreen = useFullScreen();
 
   return (
@@ -61,19 +53,14 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
               backgroundColor: "var(--colorone)",
               color: "white",
               fontSize: "1rem",
-              animation: selectSettings.eye ? "pulse 1s infinite" : "none",
+              animation: "pulse 1s infinite",
             }}
             hidden={
-              !selectSettings.eye ||
-              !selectSettings.time ||
-              settings.timeTherapy === 0 ||
-              !settings.timeTherapy
+              !settings.eye ||
+              !settings.timeTherapy ||
+              settings.timeTherapy === 0
             }
             onClick={() => {
-              setSettings((prevSettings) => ({
-                ...prevSettings,
-                rotation: `0 ${random()} 0`,
-              }));
               setShowMenu(false);
               timeOut(settings.timeTherapy);
               toggleFullScreen();
@@ -99,40 +86,29 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
             <Form.Group hidden={settings.modeVR} className="mb-3">
               <Form.Label>Ojo a tratar</Form.Label>
               <Form.Select
-                required
                 onChange={(e) => {
                   setSettings({
                     ...settings,
-                    eye: e.target.value === "true" ? true : false,
-                    rotation: `0 ${random()} 0`,
-                  });
-                  setSelectSettings({
-                    ...selectSettings,
-                    eye: true,
+                    eye: e.target.value,
                   });
                 }}
               >
-                <option>Selecciona el ojo no parchado </option>
-                <option value={true}>Derecho </option>
-                <option value={false}>Izquierdo </option>
+                <option value="">Selecciona el ojo no parchado </option>
+                <option value={"right"}>Derecho </option>
+                <option value={"left"}>Izquierdo </option>
               </Form.Select>
             </Form.Group>
             <Form.Group hidden={settings.modeVR} className="mb-3">
               <Form.Label>Duración de la terapia</Form.Label>
               <Form.Select
-                required
                 onChange={(e) => {
                   setSettings({
                     ...settings,
                     timeTherapy: e.target.value,
                   });
-                  setSelectSettings({
-                    ...selectSettings,
-                    time: true,
-                  });
                 }}
               >
-                <option>Selecciona el tiempo de duración </option>
+                <option value="">Selecciona el tiempo de duración </option>
                 <option value={1}>1 minuto (solo para pruebas)</option>
                 {[30, 45, 60, 90, 120].map((time) => (
                   <option key={time} value={time}>

@@ -11,7 +11,7 @@ const Patch = ({ settings }) => {
           visible={settings.timeTherapy != 0}
           color="black"
           radius="10"
-          stereo={settings.eye ? "eye: right" : "eye: left"}
+          stereo={settings.eye === "right" ? "eye: right" : "eye: left"}
         />
       </>
     );

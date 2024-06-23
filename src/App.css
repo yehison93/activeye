@@ -66,12 +66,17 @@
   background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-@media screen and (max-height: 600px ) {
+
+@media (orientation: landscape)  {
 
   .logo-load{
-    --height: 80vh;
+    --height: 60vh;
     width: var(--height);
   }
+  .card-footer-load-page{
+    visibility: hidden;
+  }
+  
   
 }
 

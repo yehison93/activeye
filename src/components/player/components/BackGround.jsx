@@ -6,16 +6,24 @@ const BackGround = ({ settings }) => {
   const BackGrounBody = useCallback(() => {
     return (
       <>
-        <Entity
-          visible={settings.backGround}
-          primitive="a-sky"
-          src="#sky"
-          rotation="0 300 0"
-          radius="30"
-        />
+        {settings.backGround === "whitout" ? (
+          <Entity
+            primitive="a-sky"
+            rotation="0 300 0"
+            color={settings.fog.color}
+            radius="50"
+          />
+        ) : (
+          <Entity
+            primitive="a-sky"
+            src={"#sky"}
+            rotation="0 300 0"
+            radius="50"
+          />
+        )}
       </>
     );
-  }, [settings.backGround]);
+  }, [settings.backGround, settings.fog.color]);
   return (
     <>
       <BackGrounBody />

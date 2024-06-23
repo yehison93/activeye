@@ -10,8 +10,6 @@ import Logo from "./components/Logo";
 import Tv from "./components/Tv";
 import Controls from "./components/Controls";
 import chevronIcon from "../../assets/IconsControls/chevron-up.svg";
-import dashIcon from "../../assets/IconsControls/dash-lg.svg";
-import plusIcon from "../../assets/IconsControls/plus-lg.svg";
 import pauseIcon from "../../assets/IconsControls/pause-fill.svg";
 import playIcon from "../../assets/IconsControls/play-fill.svg";
 import { getHeight, getRotation, getThetaLength } from "./js/functionsPlayer";
@@ -52,10 +50,12 @@ const Player = ({
           multiviewStereo: true;
           precision: medium;
         "
-      fog={`type: exponential; color: ${
-        settings.stateVideo ? settings.fog.color : "white"
-      };
-        density: ${settings.stateVideo ? settings.fog.density : 0.002}`}
+      fog={`
+        type: exponential; color: ${
+          settings.stateVideo ? settings.fog.color : "white"
+        };
+        density: ${settings.stateVideo ? settings.fog.density : 0.03}
+        `}
       effect={true}
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
       events={{
@@ -88,7 +88,6 @@ const Player = ({
         primitive="a-assets"
         timeout="10000"
       >
-        <img id="logo" src={settings.logo} />
         <audio
           ref={audioRef}
           autoPlay={true}
@@ -111,11 +110,10 @@ const Player = ({
           height={9}
           playsInline={true}
         />
-        <img id="sky" src={settings.backGround} loading="lazy" />
+        <img id="logo" src={settings.logo} loading="eager" />
+        <img id="sky" src={settings.backGround} loading="eager" />
         <img id="playIcon" src={playIcon} width={100} height={100} />
         <img id="pauseIcon" src={pauseIcon} width={100} height={100} />
-        <img id="plusIcon" src={plusIcon} width={100} height={100} />
-        <img id="dashIcon" src={dashIcon} width={100} height={100} />
         <img id="chevronIcon" src={chevronIcon} width={100} height={100} />
       </Entity>
 

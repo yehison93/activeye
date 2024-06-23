@@ -27,7 +27,7 @@ const random = () => {
 };
 const defaultSettings = {
   logo: logo,
-  eye: false, //true: right, false: left
+  eye: "left",
   timeTherapy: null,
   backGround: FondoDefault,
   fog: { density: 0, color: "white" }, //la densidad se gradúa desde 0.001 a 0.005 se recomienda de 0.001 a 0.003
@@ -66,13 +66,13 @@ const PlayerMain = () => {
         ...prevSettings,
         timeTherapy: null,
         positionTV: "1.5",
-        rotation: "0 0 0",
         stateVideo: false,
         videoUrl: null,
         videoName: null,
         modeVR: false,
         loadedVR: false,
       }));
+      finishTime();
       setHasInitialized(true);
     }
   }, [hasInitialized]);
@@ -130,8 +130,8 @@ const PlayerMain = () => {
           style={{
             position: "absolute",
             top: 0,
-            right: !settings.eye ? "0" : null,
-            left: settings.eye ? "0" : null,
+            right: settings.eye === "right" ? "0" : null,
+            left: settings.eye === "left" ? "0" : null,
             zIndex: 5,
           }}
           variant="outline-link fs-1 text-light"
@@ -143,8 +143,8 @@ const PlayerMain = () => {
           style={{
             position: "absolute",
             top: 0,
-            right: settings.eye ? "0" : null,
-            left: !settings.eye ? "0" : null,
+            right: settings.eye === "left" ? "0" : null,
+            left: settings.eye === "right" ? "0" : null,
             zIndex: 5,
           }}
           hidden={settings.modeVR}

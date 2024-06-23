@@ -5,20 +5,20 @@ const LoadPage = ({ settings }) => {
   return (
     <Container
       fluid
+      className="d-flex justify-content-center align-items-center bg-light"
       style={{
-        padding: "10px",
+        width: "100vw",
+        height: "100vh",
         position: "absolute",
         zIndex: 5,
-        backgroundColor: "white",
       }}
     >
       <Card
+        className="text-center"
         style={{
-          width: "100%",
-          height: "100vh",
-          margin: "auto",
+          height: "70%",
+          width: "90%",
           boxShadow: "0 0 10px #000",
-          textAlign: "center",
         }}
       >
         <Card.Header
@@ -36,6 +36,7 @@ const LoadPage = ({ settings }) => {
           <Spinner animation="border" variant="info" size="xxl" />
         </Card.Body>
         <Card.Footer
+          className="card-footer-load-page"
           style={{ backgroundColor: "var(--colorone)", color: "white" }}
         >
           Disfruta de la aplicación

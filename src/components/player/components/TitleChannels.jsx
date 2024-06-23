@@ -2,15 +2,15 @@
 import { Entity } from "aframe-react";
 import { useCallback } from "react";
 
-const TitleChannels = ({ title, position }) => {
+const TitleChannels = ({ settings, position }) => {
   const TitleChannelsBody = useCallback(() => {
     return (
       <>
-        {title.length > 0 && (
+        {settings.videoName.length > 0 && (
           <Entity
             primitive="a-text"
-            value={title}
-            color="#fff"
+            value={settings.videoName}
+            color={settings.fog.color === "white" ? "black" : "white"}
             align="center"
             width="40"
             font="kelsonsans"
@@ -18,7 +18,7 @@ const TitleChannels = ({ title, position }) => {
         )}
       </>
     );
-  }, [title]);
+  }, [settings.fog.color, settings.videoName]);
   return (
     <>
       <Entity position={position}>

@@ -14,7 +14,7 @@ const Camera = ({ settings }) => {
         look-controls="enabled: true; magicWindowTrackingEnabled: true"
         position="0 0.9 0"
         rotation={settings.rotation}
-        stereocam={settings.eye ? "eye: left" : "eye: right"}
+        stereocam={settings.eye === "right" ? "eye: left" : "eye: right"}
       >
         <Entity
           animation__mouseenter="property: visible; startEvents: mouseenter; from: false; to: true; dur: 150"
@@ -26,7 +26,7 @@ const Camera = ({ settings }) => {
           visible="false"
           position="0 0 -20"
           geometry="primitive: ring; radiusInner: 0.2; radiusOuter: 0.5"
-          material={`color: black; shader: flat`}
+          material={`color: #000; shader: flat`}
         />
       </Entity>
     );

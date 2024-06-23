@@ -9,6 +9,7 @@ const AdditionalConfig = ({ settings, setSettings }) => {
         <Form.Group className="mb-3">
           <Form.Label>Tamaño del TV</Form.Label>
           <Form.Select
+            defaultValue={settings.sizeTV}
             onChange={(e) =>
               setSettings((prevSettings) => ({
                 ...prevSettings,
@@ -25,6 +26,7 @@ const AdditionalConfig = ({ settings, setSettings }) => {
         <Form.Group className="mb-3">
           <Form.Label>Posición del TV</Form.Label>
           <Form.Select
+            defaultValue={settings.positionTV}
             onChange={(e) =>
               setSettings({
                 ...settings,
@@ -41,6 +43,7 @@ const AdditionalConfig = ({ settings, setSettings }) => {
         <Form.Group className="mb-3">
           <Form.Label>Selecciona la imagen del entorno</Form.Label>
           <Form.Select
+            defaultValue={settings.backGround}
             onChange={async (e) => {
               const importFunc = backGrounds[e.target.value];
               if (importFunc) {
@@ -49,10 +52,16 @@ const AdditionalConfig = ({ settings, setSettings }) => {
                   ...settings,
                   backGround: image.default,
                 });
+              } else {
+                setSettings({
+                  ...settings,
+                  backGround: e.target.value,
+                });
               }
             }}
           >
             <option>Selecciona un fondo </option>
+            <option value={"whitout"}>Sin imagen de fondo</option>
             {Object.keys(backGrounds).map((item, index) => (
               <option key={(item, index)} value={item}>
                 {item
@@ -76,6 +85,7 @@ const AdditionalConfig = ({ settings, setSettings }) => {
                   <Form.Group className="mb-3">
                     <Form.Label>Selecciona un color</Form.Label>
                     <Form.Select
+                      defaultValue={settings.fog.color || null}
                       onChange={(e) =>
                         setSettings({
                           ...settings,
@@ -85,7 +95,11 @@ const AdditionalConfig = ({ settings, setSettings }) => {
                           },
                         })
                       }
-                      style={{ backgroundColor: settings.fog.color }}
+                      style={{
+                        backgroundColor: settings.fog.color,
+                        color:
+                          settings.fog.color === "white" ? "black" : "white",
+                      }}
                     >
                       <option>Color</option>
                       {[
@@ -173,9 +187,9 @@ const AdditionalConfig = ({ settings, setSettings }) => {
                       });
                     }}
                     min={0}
-                    max={0.002}
+                    max={0.03}
                     step={0.000000005}
-                    defaultValue={0.001}
+                    defaultValue={settings.fog.density || 0.015}
                     type="form-range"
                     title="selecciona la intensidad"
                   />

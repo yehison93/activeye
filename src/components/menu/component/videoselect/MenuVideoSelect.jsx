@@ -58,7 +58,7 @@ const MenuVideoSelect = ({
                 backgroundColor: "var(--colorone)",
                 color: "white",
                 fontSize: "1rem",
-                animation: !videoError ? "pulse 1s infinite" : "none",
+                animation: "pulse 1s infinite",
               }}
               hidden={!viewButtonVideo || videoError}
               onClick={() => {
