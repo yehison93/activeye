@@ -174,7 +174,11 @@ const PlayerMain = () => {
           </Row>
         </Container>
       </div>
-      {!settings.loadedVR ? <LoadPage settings={settings} /> : null}
+      {!settings.loadedVR ? (
+        <div className="player-main">
+          <LoadPage settings={settings} />
+        </div>
+      ) : null}
 
       <Player
         settings={settings}

@@ -4,44 +4,40 @@ import { Container, Card, Spinner } from "react-bootstrap";
 const LoadPage = ({ settings }) => {
   return (
     <Container
+      fluid
       style={{
-        width: "100vw",
-        height: "100vh",
-        margin: 0,
-        padding: 0,
-        position: "relative",
+        padding: "10px",
+        position: "absolute",
         zIndex: 5,
+        backgroundColor: "white",
       }}
     >
       <Card
         style={{
-          position: "absolute",
-          width: "100vw",
+          width: "100%",
           height: "100vh",
-          paddingBottom: "100px",
+          margin: "auto",
+          boxShadow: "0 0 10px #000",
+          textAlign: "center",
         }}
       >
-        <Card.Header className="text-center">
+        <Card.Header
+          style={{ backgroundColor: "var(--colortwo)", color: "white" }}
+        >
           <h1>ActivEye</h1>
         </Card.Header>
-        <Card.Body
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Card.Body className="m-auto  d-flex flex-column justify-content-center align-items-center ">
           <Card.Img
+            className="logo-load"
             src={settings.logo}
-            variant="top"
             alt="logo ActiEye"
-            style={{ maxWidth: "200px", height: "200px" }}
           />
           <Card.Title className="text-center">Cargando...</Card.Title>
           <Spinner animation="border" variant="info" size="xxl" />
         </Card.Body>
-        <Card.Footer className="text-center">
+        <Card.Footer
+          style={{ backgroundColor: "var(--colorone)", color: "white" }}
+        >
           Disfruta de la aplicación
         </Card.Footer>
       </Card>

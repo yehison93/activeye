@@ -47,9 +47,9 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
             gap={3}
             style={{ justifyContent: "center" }}
           >
-            <h2 className="text-center">Configuraciones</h2>
+            <h2 className="text-center p-0 my-auto mx-0">Configuraciones</h2>
             <Button
-              variant="outline-link"
+              variant="outline-link text-light"
               style={{ border: "none" }}
               onClick={() => setViewSettings(!viewSettings)}
             >

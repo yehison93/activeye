@@ -44,9 +44,9 @@ const MenuVideoSelect = ({
               gap={3}
               style={{ justifyContent: "center" }}
             >
-              <h2 className="text-center">Canales</h2>
+              <h2 className="text-center p-0 my-auto mx-0">Canales</h2>
               <Button
-                variant="outline-link"
+                variant="outline-link text-white"
                 style={{ border: "none" }}
                 onClick={() => setViewVideoSelect(!viewVideoSelect)}
               >
