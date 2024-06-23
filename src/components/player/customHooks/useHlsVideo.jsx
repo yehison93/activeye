@@ -51,13 +51,10 @@ const useHlsVideo = () => {
     const playFallbackVideo = () => {
       playerRef.current.src = ruidoTV;
       playerRef.current.loop = true;
-      playerRef.current.volume = 0.1;
       setError(true);
-      playerRef.current.play().catch(() => {
-        console.error("Error al reproducir el video de respaldo.");
-      });
     };
-    if (url)
+    if (url) {
+      playerRef.current.loop = false;
       if (Hls.isSupported()) {
         const hls = new Hls(hlsConfig);
         hls.loadSource(url.trim());
@@ -80,8 +77,10 @@ const useHlsVideo = () => {
           .catch(playFallbackVideo);
       }
 
-    playerRef.current.onerror = playFallbackVideo;
+      playerRef.current.onerror = playFallbackVideo;
+    }
   };
+
   return [attachVideo, error, playerRef];
 };
 
