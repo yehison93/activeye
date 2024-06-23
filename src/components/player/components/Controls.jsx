@@ -75,7 +75,13 @@ const Controls = ({
         />
       </>
     );
-  }, [settings.fog.color]);
+  }, [
+    attachVideo,
+    changeChannels,
+    playerRef,
+    settings.fog.color,
+    settings.videoUrl,
+  ]);
   return (
     <>
       <Entity
