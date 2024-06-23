@@ -11,7 +11,7 @@ const BackGround = ({ settings }) => {
           primitive="a-sky"
           src="#sky"
           rotation="0 300 0"
-          radius="100"
+          radius="30"
         />
       </>
     );

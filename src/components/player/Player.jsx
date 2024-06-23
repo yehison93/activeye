@@ -111,7 +111,7 @@ const Player = ({
           height={9}
           playsInline={true}
         />
-        <img id="sky" src={settings.backGround} loading="eager" />
+        <img id="sky" src={settings.backGround} loading="lazy" />
         <img id="playIcon" src={playIcon} width={100} height={100} />
         <img id="pauseIcon" src={pauseIcon} width={100} height={100} />
         <img id="plusIcon" src={plusIcon} width={100} height={100} />

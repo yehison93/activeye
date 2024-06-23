@@ -84,7 +84,6 @@ const VideoCards = ({
           >
             <Card.Img
               variant="top"
-              rounded
               src={items.tvg.logo}
               alt={`logo del canal ${items.name}`}
               style={{ height: "100%", margin: "0 auto", padding: 0 }}
