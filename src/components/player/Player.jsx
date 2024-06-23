@@ -54,7 +54,7 @@ const Player = ({
         type: exponential; color: ${
           settings.stateVideo ? settings.fog.color : "white"
         };
-        density: ${settings.stateVideo ? settings.fog.density : 0.03}
+        density: ${settings.stateVideo ? settings.fog.density : 0.015}
         `}
       effect={true}
       xr-mode-ui={`enabled: true; enterVREnabled: true; enterVRButton: #myEnterVRButton; cardboardModeEnabled: true`}
