@@ -1,6 +1,6 @@
+import { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
-import { useRef, useState } from "react";
-
+const ruidoTV = "../../../assets/ruidoTV.mp4";
 const hlsConfig = {
   autoStartLoad: true,
   startPosition: -1,
@@ -41,45 +41,73 @@ const hlsConfig = {
   maxStarvationDelay: 4,
   maxLoadingDelay: 4,
 };
-import ruidoTV from "../../../assets/ruidoTV.mp4";
-
 const useHlsVideo = () => {
   const playerRef = useRef(null);
   const [error, setError] = useState(true);
+  const [retryCount, setRetryCount] = useState(0);
+  const [retryTime, setRetryTime] = useState(1000);
+  const maxRetries = 5; // adjust this value according to your needs
+
+  const playFallbackVideo = () => {
+    playerRef.current.src = ruidoTV;
+    playerRef.current.loop = true;
+    setError(true);
+  };
+
+  const playVideo = () => {
+    playerRef.current.muted = false;
+    playerRef.current.load();
+    playerRef.current
+      .play()
+      .then(() => {
+        setError(false);
+        setRetryCount(0); // reset retry count on successful playback
+        setRetryTime(1000);
+      })
+      .catch((error) => {
+        if (retryCount < maxRetries) {
+          console.error("Playback error:", error);
+          setRetryCount(retryCount + 1);
+          setTimeout(playVideo, retryTime); // retry after 1 second
+          setRetryTime(retryTime + 1000);
+        } else {
+          playFallbackVideo();
+        }
+      });
+  };
 
   const attachVideo = (url) => {
-    const playFallbackVideo = () => {
-      playerRef.current.src = ruidoTV;
-      playerRef.current.loop = true;
-      setError(true);
-    };
+    setError(true);
     if (url) {
       playerRef.current.loop = false;
+      playerRef.current.muted = true;
+
       if (Hls.isSupported()) {
         const hls = new Hls(hlsConfig);
         hls.loadSource(url.trim());
         hls.attachMedia(playerRef.current);
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          playerRef.current
-            .play()
-            .then(() => {
-              setError(false);
-            })
-            .catch(playFallbackVideo);
-        });
       } else {
         playerRef.current.src = url;
-        playerRef.current
-          .play()
-          .then(() => {
-            setError(false);
-          })
-          .catch(playFallbackVideo);
+        playerRef.current.type = "application/x-mpegURL";
       }
-
-      playerRef.current.onerror = playFallbackVideo;
     }
+    playVideo();
+    playerRef.current.onerror = (event) => {
+      if (event.target.error.code === 3 || event.target.error.code === 4) {
+        // MediaError codes 3 and 4 indicate network errors
+        playVideo(); // retry playback
+      } else {
+        playFallbackVideo();
+      }
+    };
   };
+
+  useEffect(() => {
+    // clean up event listeners on component unmount
+    return () => {
+      playerRef.current.onerror = null;
+    };
+  }, []);
 
   return [attachVideo, error, playerRef];
 };

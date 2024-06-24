@@ -30,7 +30,7 @@ const defaultSettings = {
   eye: "left",
   timeTherapy: null,
   backGround: FondoDefault,
-  fog: { density: 0, color: "white" }, //la densidad se gradúa desde 0.001 a 0.005 se recomienda de 0.001 a 0.003
+  fog: { density: 0, color: "black" }, //la densidad se gradúa desde 0.001 a 0.005 se recomienda de 0.001 a 0.003
   sizeTV: "normal",
   positionTV: "2",
   stateVideo: false,
