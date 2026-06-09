@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button, Card, Stack, Alert } from "react-bootstrap";
 import { ChevronDown } from "react-bootstrap-icons";
 import { ChevronUp } from "react-bootstrap-icons";
@@ -8,11 +8,26 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { HeadsetVr } from "react-bootstrap-icons";
 import useFullScreen from "../../../player/customHooks/useFullScreen";
 
-const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
+const MenuConfigSelect = ({
+  settings,
+  setSettings,
+  setShowMenu,
+  timeOut,
+  iptvSources,
+  setIptvSources,
+}) => {
   var sceneEl = document.querySelector("a-scene");
 
   const [addonsButton, setAddonsButton] = useState(false);
   const [viewSettings, setViewSettings] = useState(false);
+
+  const [localSources, setLocalSources] = useState(iptvSources || []);
+  const [newSource, setNewSource] = useState("");
+
+  // sync when prop changes
+  useEffect(() => {
+    setLocalSources(iptvSources || []);
+  }, [iptvSources]);
 
   const toggleFullScreen = useFullScreen();
 
@@ -117,6 +132,61 @@ const MenuConfigSelect = ({ settings, setSettings, setShowMenu, timeOut }) => {
                 ))}
               </Form.Select>
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>IPTV Sources (M3U/M3U8 URLs)</Form.Label>
+
+              {localSources.length === 0 ? (
+                <div className="text-muted mb-2">No hay URLs configuradas.</div>
+              ) : (
+                localSources.map((s, idx) => (
+                  <Stack direction="horizontal" gap={2} key={idx} className="mb-2">
+                    <Form.Control
+                      value={s}
+                      onChange={(e) => {
+                        const updated = [...localSources];
+                        updated[idx] = e.target.value;
+                        setLocalSources(updated);
+                      }}
+                    />
+                    <Button
+                      variant="outline-danger"
+                      onClick={() => {
+                        setLocalSources(localSources.filter((_, i) => i !== idx));
+                      }}
+                    >
+                      Eliminar
+                    </Button>
+                  </Stack>
+                ))
+              )}
+
+              <Stack direction="horizontal" gap={2} className="mt-2">
+                <Form.Control
+                  placeholder="https://example.com/list.m3u8"
+                  value={newSource}
+                  onChange={(e) => setNewSource(e.target.value)}
+                />
+                <Button
+                  onClick={() => {
+                    if (newSource && newSource.trim() !== "") {
+                      setLocalSources([...localSources, newSource.trim()]);
+                      setNewSource("");
+                    }
+                  }}
+                >
+                  Agregar
+                </Button>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    setIptvSources(localSources);
+                  }}
+                >
+                  Guardar
+                </Button>
+              </Stack>
+            </Form.Group>
+
             <Form.Group>
               <Form.Label>Algunas configuraciones adicionales</Form.Label>
               <Card
