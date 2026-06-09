@@ -14,7 +14,7 @@ const MenuConfig = ({
   channels,
   onChangeChannels,
 }) => {
-  const [viewConfig, setViewConfig] = useState(false);
+  const [viewConfig, setViewConfig] = useState(true);
   return (
     <Container className="mb-5">
       <Row>
