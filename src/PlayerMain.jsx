@@ -7,7 +7,7 @@ import useLocalStorage from "./components/player/customHooks/useLocalStorage.jsx
 // import useShake from "./components/menu/customHooks/useShake.jsx";
 import usePlaySound from "./components/player/customHooks/usePlaySound.jsx";
 import useM3uToJson from "./components/menu/customHooks/UseM3uToJson.jsx";
-import { m3uFile } from "./assets/iptvList.js";
+import { m3uFile } from "./assets/iptvSources.js";
 import useForm from "./components/menu/customHooks/UseForm.jsx";
 import useTimeOut from "./components/menu/customHooks/useTimeOut.jsx";
 import useChangeChannels from "./components/player/customHooks/useChangeChannels.jsx";
@@ -54,7 +54,8 @@ const PlayerMain = () => {
   const [settings, setSettings] = useLocalStorage(defaultSettings, "settings");
   const [hasInitialized, setHasInitialized] = useState(false);
 
-  const [parsed] = useM3uToJson({ m3uFile });
+  const [iptvSources, setIptvSources] = useLocalStorage(m3uFile, 'iptvSources');
+  const [parsed] = useM3uToJson({ m3uFile: iptvSources });
   const [channels, onChangeChannels] = useForm({
     parsed,
     initialSearch: "kids",
@@ -170,6 +171,8 @@ const PlayerMain = () => {
               timeOut={startTime}
               channels={channels}
               onChangeChannels={onChangeChannels}
+              iptvSources={iptvSources}
+              setIptvSources={setIptvSources}
             />
           </Row>
         </Container>

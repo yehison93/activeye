@@ -13,6 +13,8 @@ const MenuConfig = ({
   timeOut,
   channels,
   onChangeChannels,
+  iptvSources,
+  setIptvSources,
 }) => {
   const [viewConfig, setViewConfig] = useState(false);
   return (
@@ -34,6 +36,8 @@ const MenuConfig = ({
           setSettings={setSettings}
           setShowMenu={setShowMenu}
           timeOut={timeOut}
+          iptvSources={iptvSources}
+          setIptvSources={setIptvSources}
         />
       </Row>
     </Container>

@@ -1,5 +1,7 @@
 import * as aframeStereoComponent from "aframe-stereo-component";
-import * as AFRAME from "aframe";
+import "aframe";
+
+const AFRAME = globalThis.AFRAME;
 
 function stereoComponent() {
   const stereoComponent = aframeStereoComponent.stereo_component;
