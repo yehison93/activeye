@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const useForm = ({ parsed, initialSearch }) => {
-  const [channels, setChannels] = useState(parsed);
+const useForm = ({ parsed = [], initialSearch = "" }) => {
+  const [channels, setChannels] = useState(parsed || []);
+
   function removeAccents(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
-  useState(() => {
+  useEffect(() => {
     setChannels(
-      parsed.filter(
+      (parsed || []).filter(
         (item) =>
           removeAccents(item.name)
             .toLowerCase()
@@ -18,11 +19,11 @@ const useForm = ({ parsed, initialSearch }) => {
             .includes(removeAccents(initialSearch).toLowerCase())
       )
     );
-  }, []);
+  }, [parsed, initialSearch]);
 
   const onChange = (search) => {
     setChannels(
-      parsed.filter(
+      (parsed || []).filter(
         (item) =>
           removeAccents(item.name)
             .toLowerCase()
