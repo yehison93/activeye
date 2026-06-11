@@ -67,7 +67,7 @@ const Player = ({
         "
         fog={`
         type: exponential; color: ${
-          settings.stateVideo ? settings.fog.color : "white"
+          settings.stateVideo ? settings.fog.color : "black"
         };
         density: ${settings.stateVideo ? settings.fog.density : 0.015}
         `}
