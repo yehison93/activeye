@@ -51,7 +51,7 @@ const Player = ({
       <Scene
         id="MainScene"
         className="container-player"
-        style={{ with: "100vw", height: "100vh", margin: "0", padding: "0" }}
+        style={{ width: "100vw", height: "100vh", margin: "0", padding: "0", backgroundColor: "black" }}
         device-orientation-permission-ui="
           enabled: true;
           denyButtonText: Denegar;
@@ -67,7 +67,7 @@ const Player = ({
         "
         fog={`
         type: exponential; color: ${
-          settings.stateVideo ? settings.fog.color : "black"
+          settings.stateVideo ? settings.fog.color : "white"
         };
         density: ${settings.stateVideo ? settings.fog.density : 0.015}
         `}
