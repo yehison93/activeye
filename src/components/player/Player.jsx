@@ -51,7 +51,7 @@ const Player = ({
       <Scene
         id="MainScene"
         className="container-player"
-        style={{ width: "auto", height: "100vh", margin: "0", padding: "0", backgroundColor: "black" }}
+        style={{ with: "100vw", height: "100vh", margin: "0", padding: "0", overflow: "hidden" }}
         device-orientation-permission-ui="
           enabled: true;
           denyButtonText: Denegar;
@@ -65,7 +65,6 @@ const Player = ({
           multiviewStereo: true;
           precision: medium;
         "
-        backGroundoundColor="black"
         fog={`
         type: exponential; color: ${
           settings.stateVideo ? settings.fog.color : "white"
