@@ -51,7 +51,7 @@ const Player = ({
       <Scene
         id="MainScene"
         className="container-player"
-        style={{ with: "100vw", height: "100vh", margin: "0", padding: "0", overflow: "hidden" }}
+        style={{ width: "100vw", height: "100vh", margin: "0", padding: "0", overflow: "hidden", backgroundColor: "black" }}
         device-orientation-permission-ui="
           enabled: true;
           denyButtonText: Denegar;
