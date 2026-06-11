@@ -17,6 +17,10 @@
   overflow: hidden;
 }
 
+div.a-orientation-modal {
+    display: none !important;
+}
+
 .player-menu{
   position: absolute;
   width: 100%;
