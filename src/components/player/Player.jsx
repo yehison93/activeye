@@ -9,6 +9,7 @@ import Patch from "./components/Patch";
 import Logo from "./components/Logo";
 import Tv from "./components/Tv";
 import Controls from "./components/Controls";
+import RotateDeviceModal from "./components/menu/component/RotateDeviceModal";
 import chevronIcon from "../../assets/IconsControls/chevron-up.svg";
 import pauseIcon from "../../assets/IconsControls/pause-fill.svg";
 import playIcon from "../../assets/IconsControls/play-fill.svg";
@@ -24,6 +25,22 @@ const Player = ({
   finishTime,
 }) => {
   const [param, setParam] = useState({});
+  const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("orientationchange", checkOrientation);
+    
+    return () => {
+      window.removeEventListener("resize", checkOrientation);
+      window.removeEventListener("orientationchange", checkOrientation);
+    };
+  }, []);
+
   useEffect(() => {
     setParam((prevParam) => ({
       ...prevParam,
@@ -48,6 +65,9 @@ const Player = ({
         height={9}
         playsInline={true}
       />
+
+      {settings.modeVR && isPortrait && <RotateDeviceModal />}
+
       <Scene
         id="MainScene"
         className="container-player"
