@@ -9,7 +9,7 @@ import Patch from "./components/Patch";
 import Logo from "./components/Logo";
 import Tv from "./components/Tv";
 import Controls from "./components/Controls";
-import RotateDeviceModal from "./components/menu/component/RotateDeviceModal";
+import RotateDeviceModal from "../menu/component/RotateDeviceModal";
 import chevronIcon from "../../assets/IconsControls/chevron-up.svg";
 import pauseIcon from "../../assets/IconsControls/pause-fill.svg";
 import playIcon from "../../assets/IconsControls/play-fill.svg";
